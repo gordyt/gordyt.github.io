@@ -6,15 +6,26 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>http://blog.gordontillman.info/blog/2014-11-26-second-post,-this-time-with-org.html</loc>
+    <lastmod>2014-11-26T00:00:00-06:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>http://blog.gordontillman.info/blog/archives/</loc>
-    <lastmod>2014-11-26T15:40:25-06:00</lastmod>
+    <lastmod>2014-11-26T15:48:44-06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://blog.gordontillman.info/</loc>
-    <lastmod>2014-11-26T15:40:25-06:00</lastmod>
+    <lastmod>2014-11-26T15:48:44-06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>http://blog.gordontillman.info/setupfile.html</loc>
+    <lastmod>2014-11-26T15:48:44-06:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
