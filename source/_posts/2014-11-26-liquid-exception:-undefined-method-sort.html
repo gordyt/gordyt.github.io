@@ -1,0 +1,52 @@
+---
+title: "Liquid Exception: undefined method sort"
+date: 2014-11-26
+layout: post
+categories: org-mode
+published: true
+comments: 
+---
+<p>
+I was getting this strange error when I tried to generate my site via
+the <code>rake generate</code> command:
+</p>
+
+<pre class="example">
+## Generating Site with Jekyll
+identical source/stylesheets/screen.css
+Configuration file: /Users/gordy/Documents/Personal/gordyt.github.io/_config.yml
+            Source: source
+       Destination: public
+      Generating...
+  Liquid Exception: undefined method `sort!' for nil:NilClass in _includes/post/categories.html, included in _layouts/post.html
+jekyll 2.5.2 | Error:  undefined method `sort!' for nil:NilClass
+</pre>
+
+<p>
+<!-- more -->
+</p>
+
+<p>
+Did some search about and found <a href="http://uli-heller.github.io/blog/2013/08/04/octopress-category-generator/">this website</a>.  It is in German;
+however the code sample was clear.  The fix was to edit the file
+<code>plugins/category_generator.rb</code> as follows:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #b9ca4a;">def</span> <span style="color: #e78c45;">category_links</span>(categories)
+  <span style="color: #b9ca4a;">if</span> categories != <span style="color: #e7c547;">nil</span>     <span style="color: #969896; font-style: italic;"># </span><span style="color: #969896; font-style: italic;">Added this line</span>
+    categories = categories.sort!.map { |c| category_link c }
+
+    <span style="color: #b9ca4a;">case</span> categories.length
+    <span style="color: #b9ca4a;">when</span> 0
+      <span style="color: #70c0b1;">""</span>
+    <span style="color: #b9ca4a;">when</span> 1
+      categories[0].to_s
+    <span style="color: #b9ca4a;">else</span>
+      <span style="color: #70c0b1;">"</span><span style="color: #e7c547;">#{categories[0...-1].join(', ')}</span><span style="color: #70c0b1;">, </span><span style="color: #e7c547;">#{categories[-1]}</span><span style="color: #70c0b1;">"</span>
+    <span style="color: #b9ca4a;">end</span>
+  <span style="color: #b9ca4a;">end</span>                      <span style="color: #969896; font-style: italic;"># </span><span style="color: #969896; font-style: italic;">Added this line</span>
+<span style="color: #b9ca4a;">end</span>
+</pre>
+</div>
