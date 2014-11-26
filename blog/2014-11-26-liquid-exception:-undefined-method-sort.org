@@ -2,7 +2,7 @@
 #+DATE: 2014-11-26
 #+SETUPFILE: ~/Documents/Personal/gordyt.github.io/source/setupfile.org
 #+JEKYLL_LAYOUT: post
-#+JEKYLL_CATEGORIES: 
+#+JEKYLL_CATEGORIES: org-mode
 #+JEKYLL_PUBLISHED: true
 
 I was getting this strange error when I tried to generate my site via
