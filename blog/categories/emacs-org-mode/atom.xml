@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[GordyBlog]]></title>
-  <link href="http://blog.gordontillman.info/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Emacs,org-mode | GordyBlog]]></title>
+  <link href="http://blog.gordontillman.info/blog/categories/emacs-org-mode/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
   <updated>2014-11-26T16:02:36-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
@@ -12,52 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Testing Octopress Configuration]]></title>
-    <link href="http://blog.gordontillman.info/blog/2014-11-26-testing-octopress-configuration.html"/>
-    <updated>2014-11-26T15:03:35-06:00</updated>
-    <id>http://blog.gordontillman.info/blog/testing-octopress-configuration</id>
-    <content type="html"><![CDATA[<p>This is just a simple <em>test post</em> to see if I have the basic
-<a href="http://octopress.org">Octopress</a> configuration done correctly.  I
-tried also getting
-<a href="https://github.com/yoshinari-nomura/org-octopress">org-octopress</a>
-configured at the same time but I am getting an error when I evaluate
-the <code>org-octopress</code> command, so I will get to that later.</p>
-
-<h1>Heading One</h1>
-
-<h2>Heading Two</h2>
-
-<h3>Heading Three</h3>
-
-<h4>Heading Four</h4>
-
-<h1>Tables?</h1>
-
-<p>Are tables supported? Let&rsquo;s find out!</p>
-
-<table>
-<thead>
-<tr>
-<th> <strong>Heading One</strong> </th>
-<th> <strong>Heading Two</strong> </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> Row One, Column 1 </td>
-<td> Row One, Column 2 </td>
-</tr>
-<tr>
-<td> Row Two, Column 1 </td>
-<td> Row Two, Column 2 </td>
-</tr>
-</tbody>
-</table>
-
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Second Post: This Time With Org]]></title>
@@ -117,6 +71,9 @@ Let&#8217;s first try a simple org table:
 </div>
 </div>
 
+
+
+
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">Heading One</h2>
 <div class="outline-text-2" id="text-2">
@@ -128,6 +85,9 @@ Let&#8217;s first try a simple org table:
 </div>
 </div>
 </div>
+
+
+
 
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Simple List</h2>
@@ -142,6 +102,9 @@ Let&#8217;s first try a simple org table:
 </ul>
 </div>
 </div>
+
+
+
 
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">Numbered List</h2>
@@ -158,6 +121,7 @@ Let&#8217;s first try a simple org table:
 </ol>
 </div>
 </div>
+
 ]]></content>
   </entry>
   
