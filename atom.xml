@@ -4,7 +4,7 @@
   <title><![CDATA[GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2014-11-26T15:16:56-06:00</updated>
+  <updated>2014-11-26T15:40:25-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -24,6 +24,38 @@ tried also getting
 <a href="https://github.com/yoshinari-nomura/org-octopress">org-octopress</a>
 configured at the same time but I am getting an error when I evaluate
 the <code>org-octopress</code> command, so I will get to that later.</p>
+
+<h1>Heading One</h1>
+
+<h2>Heading Two</h2>
+
+<h3>Heading Three</h3>
+
+<h4>Heading Four</h4>
+
+<h1>Tables?</h1>
+
+<p>Are tables supported? Let&rsquo;s find out!</p>
+
+<table>
+<thead>
+<tr>
+<th> <strong>Heading One</strong> </th>
+<th> <strong>Heading Two</strong> </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> Row One, Column 1 </td>
+<td> Row One, Column 2 </td>
+</tr>
+<tr>
+<td> Row Two, Column 1 </td>
+<td> Row Two, Column 2 </td>
+</tr>
+</tbody>
+</table>
+
 ]]></content>
   </entry>
   
