@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[GordyBlog]]></title>
+  <link href="http://blog.gordontillman.info/atom.xml" rel="self"/>
+  <link href="http://blog.gordontillman.info/"/>
+  <updated>2014-11-26T15:07:57-06:00</updated>
+  <id>http://blog.gordontillman.info/</id>
+  <author>
+    <name><![CDATA[Gordon Tillman]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Testing Octopress Configuration]]></title>
+    <link href="http://blog.gordontillman.info/blog/2014-11-26-testing-octopress-configuration.html"/>
+    <updated>2014-11-26T15:03:35-06:00</updated>
+    <id>http://blog.gordontillman.info/blog/testing-octopress-configuration</id>
+    <content type="html"><![CDATA[<p>This is just a simple <em>test post</em> to see if I have the basic
+<a href="http://octopress.org">Octopress</a> configuration done correctly.  I
+tried also getting
+<a href="https://github.com/yoshinari-nomura/org-octopress">org-octopress</a>
+configured at the same time but I am getting an error when I evaluate
+the <code>org-octopress</code> command, so I will get to that later.</p>
+]]></content>
+  </entry>
+  
+</feed>
