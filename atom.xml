@@ -4,7 +4,7 @@
   <title><![CDATA[GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2014-11-26T16:02:36-06:00</updated>
+  <updated>2014-11-26T16:08:01-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -157,6 +157,58 @@ Let&#8217;s first try a simple org table:
 </li>
 </ol>
 </div>
+</div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Liquid Exception: Undefined Method Sort]]></title>
+    <link href="http://blog.gordontillman.info/blog/2014-11-26-liquid-exception:-undefined-method-sort.html"/>
+    <updated>2014-11-26T00:00:00-06:00</updated>
+    <id>http://blog.gordontillman.info/blog/liquid-exception:-undefined-method-sort</id>
+    <content type="html"><![CDATA[<p>
+I was getting this strange error when I tried to generate my site via
+the <code>rake generate</code> command:
+</p>
+
+<pre class="example">
+## Generating Site with Jekyll
+identical source/stylesheets/screen.css
+Configuration file: /Users/gordy/Documents/Personal/gordyt.github.io/_config.yml
+            Source: source
+       Destination: public
+      Generating...
+  Liquid Exception: undefined method `sort!' for nil:NilClass in _includes/post/categories.html, included in _layouts/post.html
+jekyll 2.5.2 | Error:  undefined method `sort!' for nil:NilClass
+</pre>
+
+<p>
+<!-- more -->
+</p>
+
+<p>
+Did some search about and found <a href="http://uli-heller.github.io/blog/2013/08/04/octopress-category-generator/">this website</a>.  It is in German;
+however the code sample was clear.  The fix was to edit the file
+<code>plugins/category_generator.rb</code> as follows:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #b9ca4a;">def</span> <span style="color: #e78c45;">category_links</span>(categories)
+  <span style="color: #b9ca4a;">if</span> categories != <span style="color: #e7c547;">nil</span>     <span style="color: #969896; font-style: italic;"># </span><span style="color: #969896; font-style: italic;">Added this line</span>
+    categories = categories.sort!.map { |c| category_link c }
+
+    <span style="color: #b9ca4a;">case</span> categories.length
+    <span style="color: #b9ca4a;">when</span> 0
+      <span style="color: #70c0b1;">""</span>
+    <span style="color: #b9ca4a;">when</span> 1
+      categories[0].to_s
+    <span style="color: #b9ca4a;">else</span>
+      <span style="color: #70c0b1;">"</span><span style="color: #e7c547;">#{categories[0...-1].join(', ')}</span><span style="color: #70c0b1;">, </span><span style="color: #e7c547;">#{categories[-1]}</span><span style="color: #70c0b1;">"</span>
+    <span style="color: #b9ca4a;">end</span>
+  <span style="color: #b9ca4a;">end</span>                      <span style="color: #969896; font-style: italic;"># </span><span style="color: #969896; font-style: italic;">Added this line</span>
+<span style="color: #b9ca4a;">end</span>
+</pre>
 </div>
 ]]></content>
   </entry>
