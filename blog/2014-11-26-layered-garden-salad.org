@@ -39,4 +39,6 @@ the flavors to blend.  I alway try and make it a day ahead of time.
 
 ** Finished Recipe
 
-[[http://images/2014-11-26-layered-garden-salad/salad.jpg]]
+#+BEGIN_HTML
+{% img /images/2014-11-26-layered-garden-salad/salad.jpg %}
+#+END_HTML
