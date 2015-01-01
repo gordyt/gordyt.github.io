@@ -2,7 +2,7 @@
 #+DATE: 2014-11-26
 #+SETUPFILE: ~/Documents/Personal/gordyt.github.io/source/setupfile.org
 #+JEKYLL_LAYOUT: post
-#+JEKYLL_CATEGORIES: emacs,org-mode
+#+JEKYLL_CATEGORIES: emacs org-mode
 #+JEKYLL_PUBLISHED: true
 
 * Testing Org-Octopress
