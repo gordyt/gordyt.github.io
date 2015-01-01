@@ -1,0 +1,103 @@
+#+TITLE: Building Emacs 24.4 on Ubuntu 14.04
+#+DATE: 2015-01-01
+#+SETUPFILE: ~/Documents/Personal/gordyt.github.io/source/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES: ubuntu,emacs
+#+JEKYLL_PUBLISHED: true
+
+I recently signed up for a Virtual Private Server (VPS) with [[https://vpsdime.com][vpsdime]].
+The idea is to set-up a complete development environment for all of my
+work and personal projects that I can access from a low-end device
+like a [[https://www.google.com/chrome/devices/][Chromebook]] or an [[https://www.apple.com/ipad/][iPad]] (with a suitable SSH app installed).
+
+{{{more}}}
+
+I opted for the /High RAM VPS/, which has the following
+specifications:
+
+- 6 GB RAM
+- 4 CPUs
+- 30GB Storage
+- 2TB/month traffic
+- 10 Gb connection
+
+It is very reasonably priced at only $7.00/month.  I had it spun up
+with Ubuntu 14.04 LTS.
+
+My first requirements were installing [[http://www.gnu.org/software/emacs/][Emacs 24.4]] 24.3 is the only
+version available in the repositories and I found no [[https://launchpad.net/ubuntu/%2Bppas][Personal Package
+Archive (PPA)]] that already supplied it. The remainder of this post
+documents the steps required to do this.
+
+** Dependencies
+
+There are a few things you need to have installed before you can build
+Emacs.  You need to update your list of [[https://help.ubuntu.com/community/Repositories/CommandLine][repository sources]] first.
+
+Edit the file ~/etc/apt/sources.list~ as root.  On a new Ubuntu 14.04 instance
+it looks like this:
+
+#+BEGIN_EXAMPLE
+deb http://archive.ubuntu.com/ubuntu trusty main restricted universe
+deb http://archive.ubuntu.com/ubuntu trusty-updates main restricted universe
+deb http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
+deb http://archive.canonical.com/ubuntu trusty partner
+#+END_EXAMPLE
+
+You need to enable the source code repositories.  This is very simple
+to do.  Just duplicate the first four lines in the file and change
+~deb~ at the beginning of the line to ~deb-src~.  When you have done
+this the file will look like this:
+
+#+BEGIN_EXAMPLE
+deb http://archive.ubuntu.com/ubuntu trusty main restricted universe
+deb http://archive.ubuntu.com/ubuntu trusty-updates main restricted universe
+deb http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
+deb http://archive.canonical.com/ubuntu trusty partner
+deb-src http://archive.ubuntu.com/ubuntu trusty main restricted universe
+deb-src http://archive.ubuntu.com/ubuntu trusty-updates main restricted universe
+deb-src http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
+deb-src http://archive.canonical.com/ubuntu trusty partner
+#+END_EXAMPLE
+
+Save your changes and then run the following command:
+
+#+BEGIN_SRC sh
+sudo apt-get update
+#+END_SRC
+
+Now you can install the dependencies that you will need:
+
+#+BEGIN_SRC sh
+sudo apt-get install build-essential
+sudo apt-get build-dep emacs24
+#+END_SRC
+
+** Building Emacs 24.4
+
+I like to organize my projects in a directory hierarchy like this:
+
+- ~$HOME/Projects/~
+  - ~0-9/~
+  - ~a/~
+  - ~b/~
+  - ...
+  - ~z/~
+
+So, my Emacs build would be located in the ~$HOME/Projects/e~
+directory.  Please feel free to ignore the above.  It is just a
+personal preference.  With that out of the way, here we go...
+
+#+BEGIN_SRC sh
+mkdir -p $HOME/Projects/e
+cd $HOME/Projects/e
+wget ftp.gnu.org/gnu/emacs/emacs-24.4.tar.xz
+tar -xf emacs-24.4.tar.xz
+rm emacs-24.4.tar.xz
+cd emacs-24.4
+./configure
+make
+sudo make install
+#+END_SRC
+
+That's all there is to it!
