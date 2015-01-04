@@ -1,0 +1,38 @@
+#+TITLE: SBCL and Slime on Ubuntu 14.04
+#+DATE: 2015-01-03
+#+SETUPFILE: ~/Documents/g/gordyt.github.io/source/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES: ubuntu sbcl slime
+#+JEKYLL_PUBLISHED: true
+
+This post describes how to install and configure Steel Bank Common
+Lisp (SBCL) with SLIME (Superior Lisp Interaction Mode) that is
+installed via [[http://www.quicklisp.org/][Quicklisp]] on Ubuntu 14.04 LTS (Trusty Tahr).
+
+
+{{{more}}}
+
+** Install SBCL
+
+#+BEGIN_SRC sh
+sudo apt-get instal sbcl sbcl-doc
+#+END_SRC
+
+
+** Install Quicklisp
+
+#+BEGIN_SRC sh
+curl -O http://beta.quicklisp.org/quicklisp.lisp
+sbcl --load quicklisp.lisp
+(quicklisp-quickstart:install)
+(ql:add-to-init-file)
+#+END_SRC
+
+
+** Install slime via quicklisp
+
+While still in the SBCL session
+
+#+BEGIN_SRC sh
+(ql:quickload "quicklisp-slime-helper")
+#+END_SRC

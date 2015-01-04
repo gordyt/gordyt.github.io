@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Second Post: This Time With Org - GordyBlog</title>
+  <title>SBCL and Slime on Ubuntu 14.04 - GordyBlog</title>
   <meta name="author" content="Gordon Tillman">
 
   
-  <meta name="description" content="Testing Org-Octopress This is a test post using org-octopress&#x2026; OK, this is a test post that we are composing in org-mode. Let's first try a &hellip;">
+  <meta name="description" content="This post describes how to install and configure Steel Bank Common
+Lisp (SBCL) with SLIME (Superior Lisp Interaction Mode) that is
+installed via &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.gordontillman.info/blog/2014-11-26-second-post,-this-time-with-org.html">
+  <link rel="canonical" href="http://blog.gordontillman.info/blog/2015-01-03-sbcl-and-slime-on-ubuntu-14.04.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="GordyBlog" type="application/atom+xml">
@@ -68,7 +70,7 @@
   
   <header>
     
-      <h1 class="entry-title">Second Post: This Time With Org</h1>
+      <h1 class="entry-title">SBCL and Slime on Ubuntu 14.04</h1>
     
     
       <p class="meta">
@@ -77,105 +79,63 @@
 
 
 
-<time class='entry-date' datetime='2014-11-26'><span class='date'>2014-11-26 (Wednesday)</span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-01-03'><span class='date'>2015-01-03 (Saturday)</span> <span class='time'>12:00 am</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Testing Org-Octopress</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-This is a test post using <a href="https://github.com/yoshinari-nomura/org-octopress">org-octopress</a>&#x2026;
+<div class="entry-content"><p>
+This post describes how to install and configure Steel Bank Common
+Lisp (SBCL) with SLIME (Superior Lisp Interaction Mode) that is
+installed via <a href="http://www.quicklisp.org/">Quicklisp</a> on Ubuntu 14.04 LTS (Trusty Tahr).
 </p>
+
 
 <p>
 <!-- more -->
 </p>
 
-<p>
-OK, this is a test post that we are composing in <a href="http://orgmode.org">org-mode</a>.
-</p>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Install SBCL</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
 
-<p>
-Let&#8217;s first try a simple org table:
-</p>
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="left" />
-
-<col  class="left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="left"><b>Heading One</b></th>
-<th scope="col" class="left"><b>Heading Two</b></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="left">Row One, Column 1</td>
-<td class="left">Row One, Column 2</td>
-</tr>
-
-<tr>
-<td class="left">Row Two, Column 1</td>
-<td class="left">Row Two, Column 2</td>
-</tr>
-
-<tr>
-<td class="left">Row Three, Column 1</td>
-<td class="left">Row Three, Column 2</td>
-</tr>
-</tbody>
-</table>
+<pre class="src src-sh">sudo apt-get instal sbcl sbcl-doc
+</pre>
 </div>
 </div>
+</div>
+
 
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Heading One</h2>
+<h2 id="sec-2">Install Quicklisp</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">Heading Two</h3>
-<div class="outline-text-3" id="text-2-1">
-</div><div id="outline-container-sec-2-1-1" class="outline-4">
-<h4 id="sec-2-1-1">Heading Three</h4>
+<div class="org-src-container">
+
+<pre class="src src-sh">curl -O http://beta.quicklisp.org/quicklisp.lisp
+sbcl --load quicklisp.lisp
+(quicklisp-quickstart:install)
+(ql:add-to-init-file)
+</pre>
 </div>
 </div>
 </div>
+
 
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Simple List</h2>
+<h2 id="sec-3">Install slime via quicklisp</h2>
 <div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li>Simple List Item 1
-</li>
-<li>Simple List Item 2
-</li>
-<li>Simple List Item 3
-</li>
-</ul>
-</div>
-</div>
+<p>
+While still in the SBCL session
+</p>
 
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">Numbered List</h2>
-<div class="outline-text-2" id="text-4">
-<ol class="org-ol">
-<li>Numbered List Item 1
-</li>
-<li>Numbered List Item 2
-</li>
-<li>Numbered List Item 3
-</li>
-<li>Numbered List Item 4
-</li>
-</ol>
+<div class="org-src-container">
+
+<pre class="src src-sh">(ql:quickload <span style="color: #70c0b1;">"quicklisp-slime-helper"</span>)
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -193,12 +153,12 @@ Let&#8217;s first try a simple org table:
 
 
 
-<time class='entry-date' datetime='2014-11-26'><span class='date'>2014-11-26 (Wednesday)</span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-01-03'><span class='date'>2015-01-03 (Saturday)</span> <span class='time'>12:00 am</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/emacs/'>emacs</a>, <a class='category' href='/blog/categories/org-mode/'>org-mode</a>
+    <a class='category' href='/blog/categories/sbcl/'>sbcl</a>, <a class='category' href='/blog/categories/slime/'>slime</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
   
 </span>
 
@@ -207,7 +167,7 @@ Let&#8217;s first try a simple org table:
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.gordontillman.info/blog/2014-11-26-second-post,-this-time-with-org.html" data-via="gordyt" data-counturl="http://blog.gordontillman.info/blog/2014-11-26-second-post,-this-time-with-org.html" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.gordontillman.info/blog/2015-01-03-sbcl-and-slime-on-ubuntu-14.04.html" data-via="gordyt" data-counturl="http://blog.gordontillman.info/blog/2015-01-03-sbcl-and-slime-on-ubuntu-14.04.html" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -220,10 +180,10 @@ Let&#8217;s first try a simple org table:
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014-11-26-liquid-exception:-undefined-method-sort.html" title="Previous Post: Liquid Exception: undefined method sort">&laquo; Liquid Exception: undefined method sort</a>
+        <a class="basic-alignment left" href="/blog/2015-01-01-building-emacs-24.4-on-ubuntu-14.04.html" title="Previous Post: Building Emacs 24.4 on Ubuntu 14.04">&laquo; Building Emacs 24.4 on Ubuntu 14.04</a>
       
       
-        <a class="basic-alignment right" href="/blog/2014-11-26-testing-octopress-configuration.html" title="Next Post: Testing Octopress Configuration">Testing Octopress Configuration &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2015-01-03-using-a-chromebook-as-a-development-machine.html" title="Next Post: Using a Chromebook as a Development Machine">Using a Chromebook as a Development Machine &raquo;</a>
       
     </p>
   </footer>
