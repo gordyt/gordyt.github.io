@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Chromebook | GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/blog/categories/chromebook/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2015-01-04T13:02:14-06:00</updated>
+  <updated>2015-01-04T16:12:49-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -82,6 +82,70 @@ debug messages.
 <p>
 So far this Chromebook experiment is going very well. Lot&#8217;s of fun!
 </p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fixing Scrolling on Asus C200MA-EDU-4GB]]></title>
+    <link href="http://blog.gordontillman.info/blog/2015-01-04-fixing-scrolling-on-asus-c200ma-edu-4gb.html"/>
+    <updated>2015-01-04T00:00:00-06:00</updated>
+    <id>http://blog.gordontillman.info/blog/fixing-scrolling-on-asus-c200ma-edu-4gb</id>
+    <content type="html"><![CDATA[<p>
+One thing that really bugged me with my new ASUS C22MA Chromebook was
+the way that trackpad scrolling worked.  By default it is exactly the
+opposite of my MacBook Pro.
+</p>
+
+
+
+
+<p>
+<!-- more -->
+</p>
+
+
+
+
+<p>
+Google <a href="https://support.google.com/chromebook/answer/2583287?hl=en">documents the way to change this</a>, but that was not working on
+my Chromebook because when I went to the <i>Device</i> section of the
+<i>Settings</i> because it indicated that no trackpad was found.
+</p>
+
+
+
+
+<p>
+As it turns out, the fix is pretty simple.  I just switched from the
+<i>stable</i> channel to the <i>beta</i> channel.  After the update completed
+all was fine.
+</p>
+
+
+
+
+<p>
+Switching channels is easy:
+</p>
+
+
+
+
+<ul class="org-ul">
+<li>Click on the status area in the lower-right corner of the screen.
+</li>
+<li>Select <i>Settings</i>
+</li>
+<li>Click the <i>About Chroms OS</i> link in the upper-right corner of the
+<i>Settings</i> window.
+</li>
+<li>Click the <i>More info&#x2026;</i> link just below the button labelled <i>Check
+for and apply updates</i>.
+</li>
+<li>Click on the <i>Change channel&#x2026;</i> button and follow the directions.
+</li>
+</ul>
 
 ]]></content>
   </entry>
