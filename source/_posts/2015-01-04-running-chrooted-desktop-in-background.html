@@ -1,0 +1,48 @@
+---
+title: "Running Chrooted Desktop in Background"
+date: 2015-01-04
+layout: post
+categories: ubuntu linux chromebook
+published: true
+comments: 
+---
+<p>
+I made a post yesterday that covered the steps required to install
+Ubuntu on an ASUS C200 Chromebook.  One thing I noticed was that,
+while you are running Ubuntu, it ties up your terminal window and
+makes it unavailable for doing other tasks.
+</p>
+
+<p>
+<!-- more -->
+</p>
+
+
+<p>
+According to some information that <a href="https://github.com/dnschneid/crouton">I found here</a>, you should be able to
+accomplish this via a parameter supplied to the <code>startxfce4</code> command.
+For example:
+</p>
+
+<pre class="example">
+startxfce4 -b
+</pre>
+
+<p>
+That didn't seem to work for me.  The command still ran in the foreground.
+I found that just using the standard Unix/Linux way worked fine:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">startxfce4 &gt; /dev/null 2&gt;&amp;1 &amp;
+</pre>
+</div>
+
+<p>
+<i>Note:</i>  You cannot prefix this with <code>nohup</code> and close out the
+terminal completely.  Doing so will exit the chroot environment and
+terminate Ubuntu.  But at least you know have access to the
+command-line in that terminal and you don't have to look at a bunch of
+debug messages.
+</p>
