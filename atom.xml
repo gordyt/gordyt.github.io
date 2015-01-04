@@ -4,7 +4,7 @@
   <title><![CDATA[GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2015-01-04T11:49:31-06:00</updated>
+  <updated>2015-01-04T12:14:03-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -57,6 +57,10 @@ terminal completely.  Doing so will exit the chroot environment and
 terminate Ubuntu.  But at least you know have access to the
 command-line in that terminal and you don&#8217;t have to look at a bunch of
 debug messages.
+</p>
+
+<p>
+So far this Chromebook experiment is going very well. Lot&#8217;s of fun!
 </p>
 ]]></content>
   </entry>
