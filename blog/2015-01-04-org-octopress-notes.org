@@ -23,7 +23,9 @@ locations on the two machines:
 | Asus C200   | /media/removable/gordy/Documents/g/gordyt.github.io |
 |-------------+-----------------------------------------------------|
 
-
+#+BEGIN_HTML
+<br>
+#+END_HTML
 
 On the Asus I have a symlink in my ~$HOME~ directory the the
 ~Documents~ folder on the external drive.  The external drive is a 16
