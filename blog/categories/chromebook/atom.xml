@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Chromebook | GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/blog/categories/chromebook/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2015-01-03T23:29:23-06:00</updated>
+  <updated>2015-01-04T11:49:31-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -12,6 +12,72 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Running Chrooted Desktop in Background]]></title>
+    <link href="http://blog.gordontillman.info/blog/2015-01-04-running-chrooted-desktop-in-background.html"/>
+    <updated>2015-01-04T00:00:00-06:00</updated>
+    <id>http://blog.gordontillman.info/blog/running-chrooted-desktop-in-background</id>
+    <content type="html"><![CDATA[<p>
+I made a post yesterday that covered the steps required to install
+Ubuntu on an ASUS C200 Chromebook.  One thing I noticed was that,
+while you are running Ubuntu, it ties up your terminal window and
+makes it unavailable for doing other tasks.
+</p>
+
+
+
+
+<p>
+<!-- more -->
+</p>
+
+
+
+
+<p>
+According to some information that <a href="https://github.com/dnschneid/crouton">I found here</a>, you should be able to
+accomplish this via a parameter supplied to the <code>startxfce4</code> command.
+For example:
+</p>
+
+
+
+
+<pre class="example">
+startxfce4 -b
+</pre>
+
+
+
+
+<p>
+That didn&#8217;t seem to work for me.  The command still ran in the foreground.
+I found that just using the standard Unix/Linux way worked fine:
+</p>
+
+
+
+
+<div class="org-src-container">
+
+<pre class="src src-sh">startxfce4 &gt; /dev/null 2&gt;&amp;1 &amp;
+</pre>
+</div>
+
+
+
+
+<p>
+<i>Note:</i>  You cannot prefix this with <code>nohup</code> and close out the
+terminal completely.  Doing so will exit the chroot environment and
+terminate Ubuntu.  But at least you know have access to the
+command-line in that terminal and you don&#8217;t have to look at a bunch of
+debug messages.
+</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Using a Chromebook as a Development Machine]]></title>

@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Liquid Exception: Undefined Method Sort - GordyBlog</title>
+  <title>Running Chrooted Desktop in Background - GordyBlog</title>
   <meta name="author" content="Gordon Tillman">
 
   
-  <meta name="description" content="I was getting this strange error when I tried to generate my site via
-the rake generate command: ## Generating Site with Jekyll
-identical source/ &hellip;">
+  <meta name="description" content="I made a post yesterday that covered the steps required to install
+Ubuntu on an ASUS C200 Chromebook. One thing I noticed was that,
+while you are &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +20,7 @@ identical source/ &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.gordontillman.info/blog/2014-11-26-liquid-exception:-undefined-method-sort.html">
+  <link rel="canonical" href="http://blog.gordontillman.info/blog/2015-01-04-running-chrooted-desktop-in-background.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="GordyBlog" type="application/atom+xml">
@@ -70,7 +70,7 @@ identical source/ &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Liquid Exception: Undefined Method Sort</h1>
+      <h1 class="entry-title">Running Chrooted Desktop in Background</h1>
     
     
       <p class="meta">
@@ -79,7 +79,7 @@ identical source/ &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-11-26'><span class='date'>2014-11-26 (Wednesday)</span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-01-04'><span class='date'>2015-01-04 (Sunday)</span> <span class='time'>12:00 am</span></time>
         
       </p>
     
@@ -87,49 +87,45 @@ identical source/ &hellip;">
 
 
 <div class="entry-content"><p>
-I was getting this strange error when I tried to generate my site via
-the <code>rake generate</code> command:
+I made a post yesterday that covered the steps required to install
+Ubuntu on an ASUS C200 Chromebook.  One thing I noticed was that,
+while you are running Ubuntu, it ties up your terminal window and
+makes it unavailable for doing other tasks.
 </p>
-
-<pre class="example">
-## Generating Site with Jekyll
-identical source/stylesheets/screen.css
-Configuration file: /Users/gordy/Documents/Personal/gordyt.github.io/_config.yml
-            Source: source
-       Destination: public
-      Generating...
-  Liquid Exception: undefined method `sort!' for nil:NilClass in _includes/post/categories.html, included in _layouts/post.html
-jekyll 2.5.2 | Error:  undefined method `sort!' for nil:NilClass
-</pre>
 
 <p>
 <!-- more -->
 </p>
 
+
 <p>
-Did some search about and found <a href="http://uli-heller.github.io/blog/2013/08/04/octopress-category-generator/">this website</a>.  It is in German;
-however the code sample was clear.  The fix was to edit the file
-<code>plugins/category_generator.rb</code> as follows:
+According to some information that <a href="https://github.com/dnschneid/crouton">I found here</a>, you should be able to
+accomplish this via a parameter supplied to the <code>startxfce4</code> command.
+For example:
+</p>
+
+<pre class="example">
+startxfce4 -b
+</pre>
+
+<p>
+That didn&#8217;t seem to work for me.  The command still ran in the foreground.
+I found that just using the standard Unix/Linux way worked fine:
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-ruby"><span style="color: #b9ca4a;">def</span> <span style="color: #e78c45;">category_links</span>(categories)
-  <span style="color: #b9ca4a;">if</span> categories != <span style="color: #e7c547;">nil</span>     <span style="color: #969896; font-style: italic;"># </span><span style="color: #969896; font-style: italic;">Added this line</span>
-    categories = categories.sort!.map { |c| category_link c }
-
-    <span style="color: #b9ca4a;">case</span> categories.length
-    <span style="color: #b9ca4a;">when</span> 0
-      <span style="color: #70c0b1;">""</span>
-    <span style="color: #b9ca4a;">when</span> 1
-      categories[0].to_s
-    <span style="color: #b9ca4a;">else</span>
-      <span style="color: #70c0b1;">"</span><span style="color: #e7c547;">#{categories[0...-1].join(', ')}</span><span style="color: #70c0b1;">, </span><span style="color: #e7c547;">#{categories[-1]}</span><span style="color: #70c0b1;">"</span>
-    <span style="color: #b9ca4a;">end</span>
-  <span style="color: #b9ca4a;">end</span>                      <span style="color: #969896; font-style: italic;"># </span><span style="color: #969896; font-style: italic;">Added this line</span>
-<span style="color: #b9ca4a;">end</span>
+<pre class="src src-sh">startxfce4 &gt; /dev/null 2&gt;&amp;1 &amp;
 </pre>
 </div>
+
+<p>
+<i>Note:</i>  You cannot prefix this with <code>nohup</code> and close out the
+terminal completely.  Doing so will exit the chroot environment and
+terminate Ubuntu.  But at least you know have access to the
+command-line in that terminal and you don&#8217;t have to look at a bunch of
+debug messages.
+</p>
 </div>
 
 
@@ -145,12 +141,12 @@ however the code sample was clear.  The fix was to edit the file
 
 
 
-<time class='entry-date' datetime='2014-11-26'><span class='date'>2014-11-26 (Wednesday)</span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-01-04'><span class='date'>2015-01-04 (Sunday)</span> <span class='time'>12:00 am</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/org-mode/'>org-mode</a>
+    <a class='category' href='/blog/categories/chromebook/'>chromebook</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
   
 </span>
 
@@ -159,7 +155,7 @@ however the code sample was clear.  The fix was to edit the file
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.gordontillman.info/blog/2014-11-26-liquid-exception:-undefined-method-sort.html" data-via="gordyt" data-counturl="http://blog.gordontillman.info/blog/2014-11-26-liquid-exception:-undefined-method-sort.html" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.gordontillman.info/blog/2015-01-04-running-chrooted-desktop-in-background.html" data-via="gordyt" data-counturl="http://blog.gordontillman.info/blog/2015-01-04-running-chrooted-desktop-in-background.html" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -172,10 +168,8 @@ however the code sample was clear.  The fix was to edit the file
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014-11-26-layered-garden-salad.html" title="Previous Post: Layered Garden Salad">&laquo; Layered Garden Salad</a>
+        <a class="basic-alignment left" href="/blog/2015-01-03-using-a-chromebook-as-a-development-machine.html" title="Previous Post: Using a Chromebook as a Development Machine">&laquo; Using a Chromebook as a Development Machine</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014-11-26-second-post,-this-time-with-org.html" title="Next Post: Second Post: This Time with Org">Second Post: This Time with Org &raquo;</a>
       
     </p>
   </footer>
