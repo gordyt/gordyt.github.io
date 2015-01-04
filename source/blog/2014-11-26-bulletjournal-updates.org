@@ -1,6 +1,6 @@
 #+TITLE: BulletJournal Updates
 #+DATE: 2014-11-26
-#+SETUPFILE: ~/Documents/Personal/gordyt.github.io/source/setupfile.org
+#+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
 #+JEKYLL_LAYOUT: post
 #+JEKYLL_CATEGORIES: journal
 #+JEKYLL_PUBLISHED: true
