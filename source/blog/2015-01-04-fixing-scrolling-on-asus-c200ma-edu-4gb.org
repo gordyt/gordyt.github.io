@@ -1,0 +1,33 @@
+#+TITLE: Fixing Scrolling on ASUS C200MA-EDU-4GB
+#+DATE: 2015-01-04
+#+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES: chromebook
+#+JEKYLL_PUBLISHED: true
+
+One thing that really bugged me with my new ASUS C22MA Chromebook was
+the way that track-pad scrolling worked.  By default it is exactly the
+opposite of my MacBook Pro.
+
+{{{more}}}
+
+Google [[https://support.google.com/chromebook/answer/2583287?hl%3Den][documents the way to change this]], but that was not working on
+my Chromebook because when I went to the /Device/ section of the
+/Settings/ because it indicated that no trackpad was found.
+
+As it turns out, the fix is pretty simple.  I just switched from the
+/stable/ channel to the /beta/ channel.  After the update completed
+all was fine.
+
+Switching channels is easy:
+
+- Click on the status area in the lower-right corner of the screen.
+- Select /Settings/
+- Click the /About ChromeOS/ link in the upper-right corner of the
+  /Settings/ window.
+- Click the /More info.../ link just below the button labeled /Check
+  for and apply updates/.
+- Click on the /Change channel.../ button and follow the directions.
+
+
+
