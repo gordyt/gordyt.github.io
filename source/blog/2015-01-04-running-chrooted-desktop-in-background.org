@@ -33,3 +33,5 @@ terminal completely.  Doing so will exit the chroot environment and
 terminate Ubuntu.  But at least you know have access to the
 command-line in that terminal and you don't have to look at a bunch of
 debug messages.
+
+So far this Chromebook experiment is going very well. Lot's of fun!
