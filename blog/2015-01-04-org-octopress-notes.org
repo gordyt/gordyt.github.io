@@ -21,6 +21,9 @@ locations on the two machines:
 |-------------+-----------------------------------------------------|
 | MacBook Pro | /Users/gordy/Documents/Personal/gordyt.github.io    |
 | Asus C200   | /media/removable/gordy/Documents/g/gordyt.github.io |
+|-------------+-----------------------------------------------------|
+
+
 
 On the Asus I have a symlink in my ~$HOME~ directory the the
 ~Documents~ folder on the external drive.  The external drive is a 16

@@ -4,7 +4,7 @@
   <title><![CDATA[GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2015-01-04T12:58:21-06:00</updated>
+  <updated>2015-01-04T13:00:11-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -114,6 +114,8 @@ locations on the two machines:
 </tr>
 </tbody>
 </table>
+
+
 
 <p>
 On the Asus I have a symlink in my <code>$HOME</code> directory the the
