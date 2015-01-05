@@ -53,7 +53,7 @@ this post will cover the steps I followed to get this going.
 The exact procedure required to enable dev mode will vary from one
 Chromebook to another.  For an Asus C200 it is extremely simple.
 
-1. Tap the power button while pressing and holding the /esc/ an
+1. Tap the power button while pressing and holding the /esc/ and
    /refresh/ buttons.  Note that the /refresh/ button is on the top
    row of keys and looks like a circular arrow.
 2. The Chromebook will reboot and you will see a screen that tells you
