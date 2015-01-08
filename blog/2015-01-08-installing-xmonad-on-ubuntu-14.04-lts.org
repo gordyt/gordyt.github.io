@@ -1,0 +1,114 @@
+#+TITLE: Installing xmonad on Ubuntu 14.04 LTS
+#+DATE: 2015-01-08
+#+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES: ubuntu
+#+JEKYLL_PUBLISHED: true
+
+After seeing with my own eyes how rapidly the very minimal the [[http://xmonad.org/][xmonad
+windowing manager]] starts up after logging in, I decided to upgrade an
+old Linux box I have at the office that is running Ubuntu 14.04 LTS
+(Trusy Tahr).
+
+{{{more}}}
+
+** David Brewer's Easy Installation
+
+David Brewer's [[https://github.com/davidbrewer/xmonad-ubuntu-conf][xmonad-ubuntu-conf]] is really well-documented and it is
+what my buddy at work based his setup on.  I started by forking
+David's repository so that I could maintain serveral branches online
+(one for each Linux box I install xmonad on).
+
+After that, you just clone the repository out to ~$HOME/.xmonad~ and
+run this command:
+
+#+BEGIN_SRC sh
+~/.xmonad/install-xmonad
+#+END_SRC
+
+** Keyboard Tweaks
+
+I'm using a really nice and solid [[http://www.pckeyboard.com/][IBM Model M Keyboard]] for my Linux
+box.  It has no /Super/ key and you /really/ need one with xmonad.
+
+I wanted to remap my /Alt/ key on the right-hand side of the spacebar
+as the /Super/ key.  I found instructions [[http://askubuntu.com/questions/70931/how-to-set-right-alt-to-work-as-a-winsuper-key][here]]:
+
+Basically just edit ~$HOME/.Xmodmap~ (you may not already have this
+file) and add the following:
+
+#+BEGIN_EXAMPLE
+! Free up Right-Alt for remapping
+remove mod1 = Alt_R
+
+! Remap Right-Alt to Super
+clear mod4
+keycode 108 = Super_R
+add mod4 = Super_R
+#+END_EXAMPLE
+
+Then just log out and back in again.
+
+** Desktop Backgrounds
+
+This involves two steps.  The first it to select and save them, the
+second is restore when you log in.  The /nitrogen/ command is used to
+do both.
+
+*** Selecting and Saving
+
+Start /nitrogen/ as follows:
+
+#+BEGIN_SRC sh
+nitrogen <path-to-pictures-directory>
+#+END_SRC
+
+Select the picture or pictures (if you have multiple desktops) that
+you want.  Then exit the program.  To save your preferences:
+
+#+BEGIN_SRC sh
+nitrogen --save
+#+END_SRC
+
+*** Restoring Desktop when you Log in
+
+Edit the file ~$HOME/.xinitrc~ (it may not already exit).
+
+Add the following:
+
+#+BEGIN_EXAMPLE
+nitrogen --restore &
+#+END_EXAMPLE
+
+** Fixing the stalonetray with Dual Monitors
+
+The /stalonetray/ goes in the upper-right corner of the window.  On my
+machine, with dual monitors, all my menu-bar stuff /except/ for that
+was on the left monitor.  The /stalonetray/ was at the upper-right
+corner of the right monitor and there was a little gray box in the
+upper-right corner if the left monitor where it should have been.
+
+Fixing this is easy.  First, determine the number of x-pixels in your
+monitors.  I found this out by running the /Displays/ app.  My
+monitors are ~1680x1050~.
+
+Now edit the file ~$HOME/.xmonad/start-xmonad~.  Search for
+"stalonetray".  Edit the ~--geometry~ setting.  
+
+Mine ~--geometry~ setting had this value originally:
+
+#+BEGIN_EXAMPLE
+--geometry 5x1-0+0
+#+END_EXAMPLE
+
+I changed it to ths:
+
+#+BEGIN_EXAMPLE
+--geometry 5x1-1680+0
+#+END_EXAMPLE
+
+Restart /xmonad/ and you are good to go.
+
+** xmonad default bindings
+
+Print out [[https://www.haskell.org/haskellwiki/File:Xmbindings.png][this PNG file]].

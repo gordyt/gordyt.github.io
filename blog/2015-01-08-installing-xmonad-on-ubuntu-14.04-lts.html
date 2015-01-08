@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>SBCL and Slime on Ubuntu 14.04 - GordyBlog</title>
+  <title>Installing Xmonad on Ubuntu 14.04 LTS - GordyBlog</title>
   <meta name="author" content="Gordon Tillman">
 
   
-  <meta name="description" content="This post describes how to install and configure Steel Bank Common
-Lisp (SBCL) with SLIME (Superior Lisp Interaction Mode) that is
-installed via &hellip;">
+  <meta name="description" content="After seeing with my own eyes how rapidly the very minimal the xmonad
+windowing manager starts up after logging in, I decided to upgrade an
+old &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +20,7 @@ installed via &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.gordontillman.info/blog/2015-01-03-sbcl-and-slime-on-ubuntu-14.04.html">
+  <link rel="canonical" href="http://blog.gordontillman.info/blog/2015-01-08-installing-xmonad-on-ubuntu-14.04-lts.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="GordyBlog" type="application/atom+xml">
@@ -82,7 +82,7 @@ installed via &hellip;">
   
   <header>
     
-      <h1 class="entry-title">SBCL and Slime on Ubuntu 14.04</h1>
+      <h1 class="entry-title">Installing Xmonad on Ubuntu 14.04 LTS</h1>
     
     
       <p class="meta">
@@ -91,7 +91,7 @@ installed via &hellip;">
 
 
 
-<time class='entry-date' datetime='2015-01-03'><span class='date'>2015-01-03 (Saturday)</span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-01-08'><span class='date'>2015-01-08 (Thursday)</span> <span class='time'>12:00 am</span></time>
         
       </p>
     
@@ -99,55 +99,177 @@ installed via &hellip;">
 
 
 <div class="entry-content"><p>
-This post describes how to install and configure Steel Bank Common
-Lisp (SBCL) with SLIME (Superior Lisp Interaction Mode) that is
-installed via <a href="http://www.quicklisp.org/">Quicklisp</a> on Ubuntu 14.04 LTS (Trusty Tahr).
+After seeing with my own eyes how rapidly the very minimal the <a href="http://xmonad.org/">xmonad
+windowing manager</a> starts up after logging in, I decided to upgrade an
+old Linux box I have at the office that is running Ubuntu 14.04 LTS
+(Trusy Tahr).
 </p>
-
 
 <p>
 <!-- more -->
 </p>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Install SBCL</h2>
+<h2 id="sec-1">David Brewer&#8217;s Easy Installation</h2>
 <div class="outline-text-2" id="text-1">
-<div class="org-src-container">
-
-<pre class="src src-sh">sudo apt-get instal sbcl sbcl-doc
-</pre>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Install Quicklisp</h2>
-<div class="outline-text-2" id="text-2">
-<div class="org-src-container">
-
-<pre class="src src-sh">curl -O http://beta.quicklisp.org/quicklisp.lisp
-sbcl --load quicklisp.lisp
-(quicklisp-quickstart:install)
-(ql:add-to-init-file)
-</pre>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Install slime via quicklisp</h2>
-<div class="outline-text-2" id="text-3">
 <p>
-While still in the SBCL session
+David Brewer&#8217;s <a href="https://github.com/davidbrewer/xmonad-ubuntu-conf">xmonad-ubuntu-conf</a> is really well-documented and it is
+what my buddy at work based his setup on.  I started by forking
+David&#8217;s repository so that I could maintain serveral branches online
+(one for each Linux box I install xmonad on).
+</p>
+
+<p>
+After that, you just clone the repository out to <code>$HOME/.xmonad</code> and
+run this command:
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-sh">(ql:quickload <span style="color: #70c0b1;">"quicklisp-slime-helper"</span>)
+<pre class="src src-sh">~/.xmonad/install-xmonad
 </pre>
 </div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Keyboard Tweaks</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+I&#8217;m using a really nice and solid <a href="http://www.pckeyboard.com/">IBM Model M Keyboard</a> for my Linux
+box.  It has no <i>Super</i> key and you <i>really</i> need one with xmonad.
+</p>
+
+<p>
+I wanted to remap my <i>Alt</i> key on the right-hand side of the spacebar
+as the <i>Super</i> key.  I found instructions <a href="http://askubuntu.com/questions/70931/how-to-set-right-alt-to-work-as-a-winsuper-key">here</a>:
+</p>
+
+<p>
+Basically just edit <code>$HOME/.Xmodmap</code> (you may not already have this
+file) and add the following:
+</p>
+
+<pre class="example">
+! Free up Right-Alt for remapping
+remove mod1 = Alt_R
+
+! Remap Right-Alt to Super
+clear mod4
+keycode 108 = Super_R
+add mod4 = Super_R
+</pre>
+
+<p>
+Then just log out and back in again.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Desktop Backgrounds</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+This involves two steps.  The first it to select and save them, the
+second is restore when you log in.  The <i>nitrogen</i> command is used to
+do both.
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">Selecting and Saving</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Start <i>nitrogen</i> as follows:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">nitrogen &lt;path-to-pictures-directory&gt;
+</pre>
+</div>
+
+<p>
+Select the picture or pictures (if you have multiple desktops) that
+you want.  Then exit the program.  To save your preferences:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">nitrogen --save
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">Restoring Desktop when you Log in</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Edit the file <code>$HOME/.xinitrc</code> (it may not already exit).
+</p>
+
+<p>
+Add the following:
+</p>
+
+<pre class="example">
+nitrogen --restore &amp;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Fixing the stalonetray with Dual Monitors</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The <i>stalonetray</i> goes in the upper-right corner of the window.  On my
+machine, with dual monitors, all my menu-bar stuff <i>except</i> for that
+was on the left monitor.  The <i>stalonetray</i> was at the upper-right
+corner of the right monitor and there was a little gray box in the
+upper-right corner if the left monitor where it should have been.
+</p>
+
+<p>
+Fixing this is easy.  First, determine the number of x-pixels in your
+monitors.  I found this out by running the <i>Displays</i> app.  My
+monitors are <code>1680x1050</code>.
+</p>
+
+<p>
+Now edit the file <code>$HOME/.xmonad/start-xmonad</code>.  Search for
+&#8220;stalonetray&#8221;.  Edit the <code>--geometry</code> setting.  
+</p>
+
+<p>
+Mine <code>--geometry</code> setting had this value originally:
+</p>
+
+<pre class="example">
+--geometry 5x1-0+0
+</pre>
+
+<p>
+I changed it to ths:
+</p>
+
+<pre class="example">
+--geometry 5x1-1680+0
+</pre>
+
+<p>
+Restart <i>xmonad</i> and you are good to go.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">xmonad default bindings</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Print out <a href="https://www.haskell.org/haskellwiki/File:Xmbindings.png">this PNG file</a>.
+</p>
 </div>
 </div>
 </div>
@@ -165,12 +287,12 @@ While still in the SBCL session
 
 
 
-<time class='entry-date' datetime='2015-01-03'><span class='date'>2015-01-03 (Saturday)</span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2015-01-08'><span class='date'>2015-01-08 (Thursday)</span> <span class='time'>12:00 am</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/sbcl/'>sbcl</a>, <a class='category' href='/blog/categories/slime/'>slime</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
+    <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
   
 </span>
 
@@ -179,7 +301,7 @@ While still in the SBCL session
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.gordontillman.info/blog/2015-01-03-sbcl-and-slime-on-ubuntu-14.04.html" data-via="gordyt" data-counturl="http://blog.gordontillman.info/blog/2015-01-03-sbcl-and-slime-on-ubuntu-14.04.html" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.gordontillman.info/blog/2015-01-08-installing-xmonad-on-ubuntu-14.04-lts.html" data-via="gordyt" data-counturl="http://blog.gordontillman.info/blog/2015-01-08-installing-xmonad-on-ubuntu-14.04-lts.html" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -192,10 +314,8 @@ While still in the SBCL session
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2015-01-01-building-emacs-24.4-on-ubuntu-14.04.html" title="Previous Post: Building Emacs 24.4 on Ubuntu 14.04">&laquo; Building Emacs 24.4 on Ubuntu 14.04</a>
+        <a class="basic-alignment left" href="/blog/2015-01-04-running-chrooted-desktop-in-background.html" title="Previous Post: Running Chrooted Desktop in Background">&laquo; Running Chrooted Desktop in Background</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2015-01-03-using-a-chromebook-as-a-development-machine.html" title="Next Post: Using a Chromebook as a Development Machine">Using a Chromebook as a Development Machine &raquo;</a>
       
     </p>
   </footer>
