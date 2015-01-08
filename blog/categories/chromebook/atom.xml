@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Chromebook | GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/blog/categories/chromebook/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2015-01-08T14:58:05-06:00</updated>
+  <updated>2015-01-08T15:00:40-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -43,6 +43,8 @@ Here are the results.
 
 
 
+<div style='border: 2px solid gray; padding: 4px'>
+
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -74,6 +76,8 @@ Here are the results.
 </tr>
 </tbody>
 </table>
+
+</div>
 
 
 
