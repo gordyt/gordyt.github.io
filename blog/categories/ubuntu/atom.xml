@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2015-01-08T13:23:00-06:00</updated>
+  <updated>2015-01-08T13:40:31-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -117,20 +117,14 @@ Start <i>nitrogen</i> as follows:
 
 <div class="org-src-container">
 
-<pre class="src src-sh">nitrogen &lt;path-to-pictures-directory&gt;
+<pre class="src src-sh">nitrogen --save &lt;path-to-pictures-directory&gt;
 </pre>
 </div>
 
 <p>
 Select the picture or pictures (if you have multiple desktops) that
-you want.  Then exit the program.  To save your preferences:
+you want.  Then exit the program.
 </p>
-
-<div class="org-src-container">
-
-<pre class="src src-sh">nitrogen --save
-</pre>
-</div>
 </div>
 </div>
 

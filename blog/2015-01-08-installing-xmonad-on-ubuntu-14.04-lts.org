@@ -60,15 +60,11 @@ do both.
 Start /nitrogen/ as follows:
 
 #+BEGIN_SRC sh
-nitrogen <path-to-pictures-directory>
+nitrogen --save <path-to-pictures-directory>
 #+END_SRC
 
 Select the picture or pictures (if you have multiple desktops) that
-you want.  Then exit the program.  To save your preferences:
-
-#+BEGIN_SRC sh
-nitrogen --save
-#+END_SRC
+you want.  Then exit the program.
 
 *** Restoring Desktop when you Log in
 
