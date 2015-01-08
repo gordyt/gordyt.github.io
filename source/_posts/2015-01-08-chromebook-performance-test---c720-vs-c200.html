@@ -1,0 +1,62 @@
+---
+title: "Chromebook Performance Test - C720 vs C200"
+date: 2015-01-08
+layout: post
+categories: chromebook emacs
+published: true
+comments: 
+---
+<p>
+My buddy at work just got a new Acer C720-3404 Chromebook.  I have the
+ASUS C200MA-EDU-4GB Chromebook.  We decided to do a real-world
+performance comparison with a sample task that we have to perform all
+of the time.
+</p>
+
+<p>
+<!-- more -->
+</p>
+
+<p>
+This task was compiling a program.  We choose to compile Emacs 24.4.
+Here are the results.
+</p>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left"><b>Task</b></th>
+<th scope="col" class="left"><b>Acer C720</b></th>
+<th scope="col" class="left"><b>ASUS C200</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">./configure</td>
+<td class="left">37.1 seconds</td>
+<td class="left">1 minute, 7.4 seconds</td>
+</tr>
+
+<tr>
+<td class="left">make</td>
+<td class="left">3 minutes, 2.2 seconds</td>
+<td class="left">5 minutes, 44.3 seconds</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+As you can see, the Acer C720 with its <i>1.7 GHz Core i3</i> processor 
+was much faster than the ASUS with its <i>2.16 GHz Celeron</i> processor.
+</p>
