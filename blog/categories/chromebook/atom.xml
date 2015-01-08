@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Chromebook | GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/blog/categories/chromebook/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2015-01-08T13:40:31-06:00</updated>
+  <updated>2015-01-08T14:54:21-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Chromebook Performance Test - C720 vs C200]]></title>
+    <link href="http://blog.gordontillman.info/blog/2015-01-08-chromebook-performance-test---c720-vs-c200.html"/>
+    <updated>2015-01-08T00:00:00-06:00</updated>
+    <id>http://blog.gordontillman.info/blog/chromebook-performance-test&#8212;c720-vs-c200</id>
+    <content type="html"><![CDATA[<p>
+My buddy at work just got a new Acer C720-3404 Chromebook.  I have the
+ASUS C200MA-EDU-4GB Chromebook.  We decided to do a real-world
+performance comparision with a sample task that we have to perform all
+of the time.
+</p>
+
+
+
+
+<p>
+<!-- more -->
+</p>
+
+
+
+
+<p>
+This task was compiling a program.  We choose to compile Emacs 24.4.
+Here are the results.
+</p>
+
+
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left"><b>Task</b></th>
+<th scope="col" class="left">Acer C720</th>
+<th scope="col" class="left">ASUS C200</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">./configure</td>
+<td class="left">37.1 seconds</td>
+<td class="left">1 minute, 7.4 seconds</td>
+</tr>
+
+<tr>
+<td class="left">make</td>
+<td class="left">3 minutes, 2.2 seconds</td>
+<td class="left">5 minutes, 44.3 seconds</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+<p>
+As you can see, the Acer C720 with its <i>1.7 GHz Core i3</i> processor 
+was much faster than the ASUS with its <i>2.16 GHz Celeron</i> processor.
+</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Running Chrooted Desktop in Background]]></title>
