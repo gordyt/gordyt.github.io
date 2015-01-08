@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Chromebook | GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/blog/categories/chromebook/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2015-01-08T14:54:21-06:00</updated>
+  <updated>2015-01-08T14:58:05-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -56,8 +56,8 @@ Here are the results.
 <thead>
 <tr>
 <th scope="col" class="left"><b>Task</b></th>
-<th scope="col" class="left">Acer C720</th>
-<th scope="col" class="left">ASUS C200</th>
+<th scope="col" class="left"><b>Acer C720</b></th>
+<th scope="col" class="left"><b>ASUS C200</b></th>
 </tr>
 </thead>
 <tbody>

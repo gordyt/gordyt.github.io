@@ -15,7 +15,7 @@ of the time.
 This task was compiling a program.  We choose to compile Emacs 24.4.
 Here are the results.
 
-| *Task*      | Acer C720              | ASUS C200               |
+| *Task*      | *Acer C720*            | *ASUS C200*             |
 |-------------+------------------------+-------------------------|
 | ./configure | 37.1 seconds           | 1 minute, 7.4 seconds   |
 | make        | 3 minutes, 2.2 seconds | 5 minutes, 44.3 seconds |
