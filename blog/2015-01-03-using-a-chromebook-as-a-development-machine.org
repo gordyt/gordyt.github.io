@@ -124,11 +124,36 @@ button on the top row of the keyboard.  On my Asus this button looks
 like a rectangle with little arrow-heads in the top-left and
 bottom-right corners.  Google calls this /immersive mode/.
 
+** Enable Verified Boot and Auto Updates
+
+This tip came from [[https://sites.google.com/site/chromeoswikisite/home/what-s-new-in-dev-and-beta/shell-acess-with-verified-boot][here]].  Enabling developer mode will disable
+verified boot by default.  To fix it, just do the following:
+
+- Open a shell and become root
+  #+BEGIN_SRC sh
+    Control-Alt-T
+    shell
+    sudo su -
+  #+END_SRC
+- If you have not already done so, set a password for the /root/ user
+  by entering the following command and following the prompts:
+  #+BEGIN_SRC sh
+  chromeos-setdevpasswd
+  #+END_SRC
+- Enable verified boot from the root shell:
+  #+BEGIN_SRC sh
+  crossystem dev_boot_usb=0 dev_boot_signed_only=1
+  #+END_SRC
+
+Please see the [[https://sites.google.com/site/chromeoswikisite/home/what-s-new-in-dev-and-beta/shell-acess-with-verified-boot][original post]] for more information and some screen shots.
+
+
 ** References
 
 These are some of the sites I read through when setting up the
 Chromebook:
 
+- [[https://sites.google.com/site/chromeoswikisite/home/what-s-new-in-dev-and-beta/shell-acess-with-verified-boot][Shell Access With Verified Boot And Auto Updates]]
 - [[http://liliputing.com/2014/06/asus-c200-chromebook-enabling-dev-mode-installing-ubuntu.html][Asus C200 Chromebook: Enabling dev mode, installing Ubuntu]]
 - [[http://www.howtogeek.com/162120/how-to-install-ubuntu-linux-on-your-chromebook-with-crouton/][How to Install Ubuntu Linux on Your Chromebook with Crouton]]
 - [[https://github.com/dnschneid/crouton][David Schneider's Crouton GitHub Page]]

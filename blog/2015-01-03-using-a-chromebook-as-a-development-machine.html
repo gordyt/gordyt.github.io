@@ -309,14 +309,58 @@ bottom-right corners.  Google calls this <i>immersive mode</i>.
 </div>
 
 <div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8">References</h2>
+<h2 id="sec-8">Enable Verified Boot and Auto Updates</h2>
 <div class="outline-text-2" id="text-8">
+<p>
+This tip came from <a href="https://sites.google.com/site/chromeoswikisite/home/what-s-new-in-dev-and-beta/shell-acess-with-verified-boot">here</a>.  Enabling developer mode will disable
+verified boot by default.  To fix it, just do the following:
+</p>
+
+<ul class="org-ul">
+<li>Open a shell and become root
+<div class="org-src-container">
+
+<pre class="src src-sh">Control-Alt-T
+shell
+sudo su -
+</pre>
+</div>
+</li>
+<li>If you have not already done so, set a password for the <i>root</i> user
+by entering the following command and following the prompts:
+<div class="org-src-container">
+
+<pre class="src src-sh">chromeos-setdevpasswd
+</pre>
+</div>
+</li>
+<li>Enable verified boot from the root shell:
+<div class="org-src-container">
+
+<pre class="src src-sh">crossystem <span style="color: #e7c547;">dev_boot_usb</span>=0 <span style="color: #e7c547;">dev_boot_signed_only</span>=1
+</pre>
+</div>
+</li>
+</ul>
+
+<p>
+Please see the <a href="https://sites.google.com/site/chromeoswikisite/home/what-s-new-in-dev-and-beta/shell-acess-with-verified-boot">original post</a> for more information and some screen shots.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9">References</h2>
+<div class="outline-text-2" id="text-9">
 <p>
 These are some of the sites I read through when setting up the
 Chromebook:
 </p>
 
 <ul class="org-ul">
+<li><a href="https://sites.google.com/site/chromeoswikisite/home/what-s-new-in-dev-and-beta/shell-acess-with-verified-boot">Shell Access With Verified Boot And Auto Updates</a>
+</li>
 <li><a href="http://liliputing.com/2014/06/asus-c200-chromebook-enabling-dev-mode-installing-ubuntu.html">Asus C200 Chromebook: Enabling dev mode, installing Ubuntu</a>
 </li>
 <li><a href="http://www.howtogeek.com/162120/how-to-install-ubuntu-linux-on-your-chromebook-with-crouton/">How to Install Ubuntu Linux on Your Chromebook with Crouton</a>
