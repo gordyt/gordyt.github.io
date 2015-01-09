@@ -49,7 +49,7 @@ I love these fonts!
       sudo cp * /usr/local/chroots/trusty-i3/usr/share/fonts/opentype/
 	#+END_SRC
 
-** Set i3 to start automaticall when you startx
+** Set i3 to start automatically when you startx
 
 Do this from in your chroot.
 
@@ -88,7 +88,7 @@ Back in the chroot, edit the file ~$HOME/.i3/config~
 
 ** Tips
 
-- Audio from the chroot will now be forwared to CRAS (Chromium OS
+- Audio from the chroot will now be forwarded to CRAS (Chromium OS
   audio server).
 - To switch from chroot to ChromeOS: ~Ctrl-Alt-Shift-Forward~
 - To switch from ChromeOS back to chroot: ~Ctrl-Alt-Forward~ then
