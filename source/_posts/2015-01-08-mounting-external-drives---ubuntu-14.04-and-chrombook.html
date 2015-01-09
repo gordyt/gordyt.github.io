@@ -1,0 +1,78 @@
+---
+title: "Mounting External Drives - Ubuntu 14.04 and Chromebook"
+date: 2015-01-08
+layout: post
+categories: chromebook ubuntu
+published: true
+comments: 
+---
+<p>
+OK, this post is part of my continuing experiments with an ASUS C200
+Chromebook.  I have installed Ubuntu 14.04 using <i>crouton</i>.
+</p>
+
+<p>
+I had created two partitions on a Micro SD Card, one as Fat32 (EsFat
+actually) and the other as ext4.  
+</p>
+
+<p>
+The FAT32 partition mounts at <code>/media/removeable/share</code> and the ext4
+partition mounts at <code>/media/removeable/gordy</code>.  I tried storing
+various projects on the ext4 partition but when I tried to build from
+that partition I would get a permissions error.
+</p>
+
+
+<p>
+<!-- more -->
+</p>
+
+<p>
+Long story short, it turns out that the the ChromeOS side is mounting
+the ext4 partition with <i>noexec</i> permissions.  That was causing all
+the problems.  The solution turned out to be simple.  Just a single
+command to remount the partition (issued from the Ubuntu side) does
+the trick:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo mount -t ext4 -o remount,rw /dev/mmcblk1p1 /var/host/media/removable/gordy
+</pre>
+</div>
+
+<p>
+So, in the above command:
+</p>
+
+<ul class="org-ul">
+<li><code>-t ext4</code> is the type of the partition.  I had previously formatted
+it as ext4.
+</li>
+<li><code>-o remount,rw</code> tells the system to remote the partition with
+read/write privileges
+</li>
+<li><code>/dev/mmcblk1p1</code> is the path to the partition that needs to be
+mounted.  It will likely be different on your machine.  You can find
+out what your device path is by just typing <code>mount</code> with no
+arguments and grepping for the name of the volume.
+</li>
+<li><code>/var/host/media/removable/gordy</code> is the mount point.  A careful
+reader will notice that this is different than what I wrote at the
+top of the post (<code>/media/removeable/gordy</code>).  Well as it turns out
+<code>/media/removeable</code> is a symbolic link to
+<code>/var/host/media/removeable</code> and if you try to mount to
+<code>/media/removeable/gordy</code> the mount command complains about trying
+to follow too many symbolic links.  Please note that this mount path
+will also be different on you machine, unless you named your
+partition "gordy" as well. :-)
+</li>
+</ul>
+
+
+<p>
+Anyway, after remounting I am able to use my ext4 partition to hold
+projects and be able to <code>./configure</code> and <code>make</code> out of directories on
+the partition just fine.
+</p>
