@@ -4,7 +4,7 @@
   <title><![CDATA[GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2015-01-09T10:22:15-06:00</updated>
+  <updated>2015-01-09T13:32:04-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -12,6 +12,200 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Ubuntu 14.04 LTS With I3 Window Manager on Chromebook]]></title>
+    <link href="http://blog.gordontillman.info/blog/2015-01-09-installing-ubuntu-14.04-lts-with-i3-window-manager-on-chromebook.html"/>
+    <updated>2015-01-09T00:00:00-06:00</updated>
+    <id>http://blog.gordontillman.info/blog/installing-ubuntu-14.04-lts-with-i3-window-manager-on-chromebook</id>
+    <content type="html"><![CDATA[<p>
+In this post I document the steps required to install and configure
+Ubuntu 14.04 LTS (Trusty Tahr) on an ASUS C200MA-EDU-4GB Chromebook.
+</p>
+
+<p>
+<!-- more -->
+</p>
+
+<p>
+I&#8217;m going to assume that you have already downloaded <a href="https://github.com/dnschneid/crouton">Crouton</a>.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Install the base system</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Hit <code>Ctrl+Alt+t</code> to start a <i>crosh</i> shell
+</li>
+<li>Enter <code>shell</code> to start a proper shell.
+</li>
+<li>Enter <code>cd Downloads</code>
+</li>
+<li>Install the base system by entering
+<div class="org-src-container">
+
+<pre class="src src-sh">~sudo sh -e ./crouton -r trusty -t x11,extension -n trusty-i3
+</pre>
+</div>
+<ul class="org-ul">
+<li>Follow the directions
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Install the window manager</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li><code>sudo enter-chroot -n trusty-i3</code>
+</li>
+<li><code>sudo apt-get install i3</code>
+<ul class="org-ul">
+<li>allow it to create a default configuration file
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Install a decent terminal</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li><code>sudo apt-get install gnome-terminal</code>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Install the Adobe Source Code Pro Fonts</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+I love these fonts!
+</p>
+
+<ul class="org-ul">
+<li>Navigate to Adobe&#8217;s github download page <a href="https://github.com/adobe-fonts/source-code-pro/releases/">here</a>.
+</li>
+<li>Download the tar.gz format
+</li>
+<li>Assuming that your chroot is running&#x2026;.
+<ul class="org-ul">
+<li>From the ChromeOS side do <code>Ctrl+Alt+t</code> to open a terminal
+</li>
+<li>Enter <code>shell</code>, then <code>cd ~/Downloads</code>
+</li>
+<li>Untar the archive.  For me it was: <code>tar xfz source-code-pro-1.017R.tar.gz</code>
+</li>
+<li>CD into the extracted archive&#8217;s OTF directory: <code>cd source-code-pro-1.017R/OTF</code>
+</li>
+<li>Copy the fonts over to the chroot.  For me this was:
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo cp * /usr/local/chroots/trusty-i3/usr/share/fonts/opentype/
+</pre>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Set i3 to start automaticall when you startx</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Do this from in your chroot.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #c397d8;">echo</span> <span style="color: #70c0b1;">"exec i3"</span> &gt; ~/.xinitrc
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">Make an easy alias for starting your windowing system</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>Exit out of the chroot
+</li>
+<li>From inside your <code>crosh/shell</code>:
+<ul class="org-ul">
+<li>Edit <code>$HOME/.bashrc</code>
+</li>
+<li>Add this alias: 
+<pre class="example">
+alias starti3='sudo enter-chroot -n trusty-i3 xinit'
+</pre>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">Tweak a couple of i3 settings</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Back in the chroot, edit the file <code>$HOME/.i3/config</code>
+</p>
+
+<ul class="org-ul">
+<li>Use the Search key as your i3 mod key
+<pre class="example">
+set $mod Mod4
+</pre>
+</li>
+<li>Use Adobe&#8217;s Source Code Pro font as your default font
+<pre class="example">
+font pango:Source Code Pro 12
+</pre>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8">References</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li><a href="https://github.com/dnschneid/crouton">The Crouton Homepage</a>
+</li>
+<li><a href="https://github.com/dnschneid/crouton/wiki/i3">Using i3 in crouton</a>
+</li>
+<li><a href="https://i3wm.org/">i3 - improved tiling wm</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9">Tips</h2>
+<div class="outline-text-2" id="text-9">
+<ul class="org-ul">
+<li>Audio from the chroot will now be forwared to CRAS (Chromium OS
+audio server).
+</li>
+<li>To switch from chroot to ChromeOS: <code>Ctrl-Alt-Shift-Forward</code>
+</li>
+<li>To switch from ChromeOS back to chroot: <code>Ctrl-Alt-Forward</code> then
+<code>Ctrl-Alt-Refresh</code>
+</li>
+</ul>
+</div>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mounting External Drives - Ubuntu 14.04 and Chromebook]]></title>

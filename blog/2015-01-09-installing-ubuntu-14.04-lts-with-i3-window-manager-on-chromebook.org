@@ -1,0 +1,96 @@
+#+TITLE: Installing Ubuntu 14.04 LTS with i3 Window Manager on Chromebook
+#+DATE: 2015-01-09
+#+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES: ubuntu chromebook
+#+JEKYLL_PUBLISHED: true
+
+In this post I document the steps required to install and configure
+Ubuntu 14.04 LTS (Trusty Tahr) on an ASUS C200MA-EDU-4GB Chromebook.
+
+{{{more}}}
+
+I'm going to assume that you have already downloaded [[https://github.com/dnschneid/crouton][Crouton]].
+
+** Install the base system
+
+- Hit ~Ctrl+Alt+t~ to start a /crosh/ shell
+- Enter ~shell~ to start a proper shell.
+- Enter ~cd Downloads~
+- Install the base system by entering
+  #+BEGIN_SRC sh
+    ~sudo sh -e ./crouton -r trusty -t x11,extension -n trusty-i3
+  #+END_SRC
+  - Follow the directions
+
+** Install the window manager
+
+- ~sudo enter-chroot -n trusty-i3~
+- ~sudo apt-get install i3~
+  - allow it to create a default configuration file
+
+** Install a decent terminal
+
+- ~sudo apt-get install gnome-terminal~
+
+** Install the Adobe Source Code Pro Fonts
+
+I love these fonts!
+
+- Navigate to Adobe's github download page [[https://github.com/adobe-fonts/source-code-pro/releases/][here]].
+- Download the tar.gz format
+- Assuming that your chroot is running....
+  - From the ChromeOS side do ~Ctrl+Alt+t~ to open a terminal
+  - Enter ~shell~, then ~cd ~/Downloads~
+  - Untar the archive.  For me it was: ~tar xfz source-code-pro-1.017R.tar.gz~
+  - CD into the extracted archive's OTF directory: ~cd source-code-pro-1.017R/OTF~
+  - Copy the fonts over to the chroot.  For me this was:
+	#+BEGIN_SRC sh
+      sudo cp * /usr/local/chroots/trusty-i3/usr/share/fonts/opentype/
+	#+END_SRC
+
+** Set i3 to start automaticall when you startx
+
+Do this from in your chroot.
+
+#+BEGIN_SRC sh
+echo "exec i3" > ~/.xinitrc
+#+END_SRC
+
+** Make an easy alias for starting your windowing system
+
+- Exit out of the chroot
+- From inside your ~crosh/shell~:
+  - Edit ~$HOME/.bashrc~
+  - Add this alias: 
+	#+BEGIN_EXAMPLE
+      alias starti3='sudo enter-chroot -n trusty-i3 xinit'
+	#+END_EXAMPLE
+
+** Tweak a couple of i3 settings
+
+Back in the chroot, edit the file ~$HOME/.i3/config~
+
+- Use the Search key as your i3 mod key
+  #+BEGIN_EXAMPLE
+    set $mod Mod4
+  #+END_EXAMPLE
+- Use Adobe's Source Code Pro font as your default font
+  #+BEGIN_EXAMPLE
+    font pango:Source Code Pro 12
+  #+END_EXAMPLE
+
+** References
+
+- [[https://github.com/dnschneid/crouton][The Crouton Homepage]]
+- [[https://github.com/dnschneid/crouton/wiki/i3][Using i3 in crouton]]
+- [[https://i3wm.org/][i3 - improved tiling wm]]
+
+** Tips
+
+- Audio from the chroot will now be forwared to CRAS (Chromium OS
+  audio server).
+- To switch from chroot to ChromeOS: ~Ctrl-Alt-Shift-Forward~
+- To switch from ChromeOS back to chroot: ~Ctrl-Alt-Forward~ then
+  ~Ctrl-Alt-Refresh~
+
