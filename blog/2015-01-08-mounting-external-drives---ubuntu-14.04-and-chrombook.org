@@ -1,4 +1,4 @@
-#+TITLE: Mounting External Drives - Ubuntu 14.04 and Chrombook
+#+TITLE: Mounting External Drives - Ubuntu 14.04 and Chromebook
 #+DATE: 2015-01-08
 #+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
 #+JEKYLL_LAYOUT: post
