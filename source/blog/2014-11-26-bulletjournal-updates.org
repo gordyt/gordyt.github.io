@@ -42,7 +42,7 @@ Regarding that last point, I would like to share my current setup.
 - Left two columns for every other row (two rows per day. if necessary
   carry-over to second spread)
   - day (1-31)
-  - two letters of weekday; e.g., 'Mo' for monday, etc.
+  - two letters of weekday; e.g., 'Mo' for Monday, etc.
 - Right side of first row for each day
   - Page number for the start of the Daily Calendar for that day
 - Entries 
