@@ -2,7 +2,7 @@
 #+DATE: 2015-01-04
 #+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
 #+JEKYLL_LAYOUT: post
-#+JEKYLL_CATEGORIES: eamcs octopress github
+#+JEKYLL_CATEGORIES: emacs octopress github
 #+JEKYLL_PUBLISHED: true
 
 I've been trying to sort-out the details of what is required to be
@@ -14,20 +14,20 @@ computers that I am using.
 {{{more}}}
 
 The main laptop is my MacBook Pro.  The new, secondary, laptop is an
-Asus C200 with 4GB RAM and a 32GB SSD.  Here are the repository
+ASUS C200 with 4GB RAM and a 32GB SSD.  Here are the repository
 locations on the two machines:
 
 | Machine     | Org-Octopress Git Repository Location               |
 |-------------+-----------------------------------------------------|
 | MacBook Pro | /Users/gordy/Documents/Personal/gordyt.github.io    |
-| Asus C200   | /media/removable/gordy/Documents/g/gordyt.github.io |
+| ASUS C200   | /media/removable/gordy/Documents/g/gordyt.github.io |
 |-------------+-----------------------------------------------------|
 
 #+BEGIN_HTML
 <br>
 #+END_HTML
 
-On the Asus I have a symlink in my ~$HOME~ directory the the
+On the ASUS I have a symlink in my ~$HOME~ directory the the
 ~Documents~ folder on the external drive.  The external drive is a 16
 CB SD card.
 
@@ -36,7 +36,7 @@ CB SD card.
 Org-octopress has a setting called ~org-octopress-setup-file~ that
 points to your blog-specific information.  It references this file
 when it exports your org-mode source file to the HTML file it
-that Jeckyl uses to generate your GitHub pages site.
+that Jekyll uses to generate your GitHub pages site.
 
 When you create a new post, Org-octopress fills in a skeleton org-mode
 file that you use to write in to compose your blog post.  When it does
@@ -73,8 +73,8 @@ local machine where the site is being maintained.
     origin  <your-github-repository-path> (push)
   #+END_EXAMPLE
 - It has the /source/ branch checked-out
-- ~<site-root>/_deploy~ is a subdirectory that is maintained by
-  Jeckyl.  It is /also/ a git repository with the following remotes:
+- ~<site-root>/_deploy~ is a sub-directory that is maintained by
+  Jekyll.  It is /also/ a git repository with the following remotes:
   #+BEGIN_EXAMPLE
     origin  <your-github-repository-path> (fetch)
     origin  <your-github-repository-path> (push)
@@ -87,9 +87,9 @@ your site, you must manually checkout a copy of the repo into the
 ~_deploy~ sub-directory and make sure the ~master~ branch is
 checked-out.
 
-One other note about this:  If you get an error from Jeckyl when it
+One other note about this:  If you get an error from Jekyll when it
 tries to deploy your site when it tries to push /master -> master/,
-you need to go into the ~_deploy~ subdirectory and do something like
+you need to go into the ~_deploy~ sub-directory and do something like
 this:
 
 #+BEGIN_SRC sh

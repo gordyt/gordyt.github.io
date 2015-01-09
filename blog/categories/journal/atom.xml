@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Journal | GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/blog/categories/journal/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2015-01-09T09:47:49-06:00</updated>
+  <updated>2015-01-09T10:22:15-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -109,7 +109,7 @@ carry-over to second spread)
 <ul class="org-ul">
 <li>day (1-31)
 </li>
-<li>two letters of weekday; e.g., &#8216;Mo&#8217; for monday, etc.
+<li>two letters of weekday; e.g., &#8216;Mo&#8217; for Monday, etc.
 </li>
 </ul>
 </li>

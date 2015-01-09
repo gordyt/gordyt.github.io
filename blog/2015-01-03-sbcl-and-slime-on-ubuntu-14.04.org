@@ -15,7 +15,7 @@ installed via [[http://www.quicklisp.org/][Quicklisp]] on Ubuntu 14.04 LTS (Trus
 ** Install SBCL
 
 #+BEGIN_SRC sh
-sudo apt-get instal sbcl sbcl-doc
+sudo apt-get install sbcl sbcl-doc
 #+END_SRC
 
 

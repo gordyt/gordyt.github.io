@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Slime | GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/blog/categories/slime/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2015-01-09T09:47:49-06:00</updated>
+  <updated>2015-01-09T10:22:15-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -39,7 +39,7 @@ installed via <a href="http://www.quicklisp.org/">Quicklisp</a> on Ubuntu 14.04 
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">sudo apt-get instal sbcl sbcl-doc
+<pre class="src src-sh">sudo apt-get install sbcl sbcl-doc
 </pre>
 </div>
 </div>

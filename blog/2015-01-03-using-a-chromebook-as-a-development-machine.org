@@ -51,7 +51,7 @@ this post will cover the steps I followed to get this going.
 ** Enabling dev mode
 
 The exact procedure required to enable dev mode will vary from one
-Chromebook to another.  For an Asus C200 it is extremely simple.
+Chromebook to another.  For an ASUS C200 it is extremely simple.
 
 1. Tap the power button while pressing and holding the /esc/ and
    /refresh/ buttons.  Note that the /refresh/ button is on the top
@@ -119,8 +119,8 @@ starting your Ubuntu environment.
 
 
 By default this will start up the Ubuntu windowing system in full
-screen mode.  To toggle fullscreen mode just hit what would be the F4
-button on the top row of the keyboard.  On my Asus this button looks
+screen mode.  To toggle full-screen mode just hit what would be the F4
+button on the top row of the keyboard.  On my ASUS this button looks
 like a rectangle with little arrow-heads in the top-left and
 bottom-right corners.  Google calls this /immersive mode/.
 

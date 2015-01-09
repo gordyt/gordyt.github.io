@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2015-01-09T09:47:49-06:00</updated>
+  <updated>2015-01-09T10:22:15-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -472,7 +472,7 @@ this post will cover the steps I followed to get this going.
 <div class="outline-text-2" id="text-4">
 <p>
 The exact procedure required to enable dev mode will vary from one
-Chromebook to another.  For an Asus C200 it is extremely simple.
+Chromebook to another.  For an ASUS C200 it is extremely simple.
 </p>
 
 <ol class="org-ol">
@@ -608,8 +608,8 @@ hitting <i>enter</i>.
 
 <p>
 By default this will start up the Ubuntu windowing system in full
-screen mode.  To toggle fullscreen mode just hit what would be the F4
-button on the top row of the keyboard.  On my Asus this button looks
+screen mode.  To toggle full-screen mode just hit what would be the F4
+button on the top row of the keyboard.  On my ASUS this button looks
 like a rectangle with little arrow-heads in the top-left and
 bottom-right corners.  Google calls this <i>immersive mode</i>.
 </p>
@@ -731,7 +731,7 @@ installed via <a href="http://www.quicklisp.org/">Quicklisp</a> on Ubuntu 14.04 
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">sudo apt-get instal sbcl sbcl-doc
+<pre class="src src-sh">sudo apt-get install sbcl sbcl-doc
 </pre>
 </div>
 </div>

@@ -4,7 +4,7 @@
   <title><![CDATA[GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2015-01-09T09:47:49-06:00</updated>
+  <updated>2015-01-09T10:22:15-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -275,7 +275,7 @@ Print out <a href="https://www.haskell.org/haskellwiki/File:Xmbindings.png">this
     <content type="html"><![CDATA[<p>
 My buddy at work just got a new Acer C720-3404 Chromebook.  I have the
 ASUS C200MA-EDU-4GB Chromebook.  We decided to do a real-world
-performance comparision with a sample task that we have to perform all
+performance comparison with a sample task that we have to perform all
 of the time.
 </p>
 
@@ -400,7 +400,7 @@ computers that I am using.
 
 <p>
 The main laptop is my MacBook Pro.  The new, secondary, laptop is an
-Asus C200 with 4GB RAM and a 32GB SSD.  Here are the repository
+ASUS C200 with 4GB RAM and a 32GB SSD.  Here are the repository
 locations on the two machines:
 </p>
 
@@ -425,7 +425,7 @@ locations on the two machines:
 </tr>
 
 <tr>
-<td class="left">Asus C200</td>
+<td class="left">ASUS C200</td>
 <td class="left">/media/removable/gordy/Documents/g/gordyt.github.io</td>
 </tr>
 </tbody>
@@ -434,7 +434,7 @@ locations on the two machines:
 <br>
 
 <p>
-On the Asus I have a symlink in my <code>$HOME</code> directory the the
+On the ASUS I have a symlink in my <code>$HOME</code> directory the the
 <code>Documents</code> folder on the external drive.  The external drive is a 16
 CB SD card.
 </p>
@@ -446,7 +446,7 @@ CB SD card.
 Org-octopress has a setting called <code>org-octopress-setup-file</code> that
 points to your blog-specific information.  It references this file
 when it exports your org-mode source file to the HTML file it
-that Jeckyl uses to generate your GitHub pages site.
+that Jekyll uses to generate your GitHub pages site.
 </p>
 
 <p>
@@ -498,8 +498,8 @@ origin  &lt;your-github-repository-path&gt; (push)
 </li>
 <li>It has the <i>source</i> branch checked-out
 </li>
-<li><code>&lt;site-root&gt;/_deploy</code> is a subdirectory that is maintained by
-Jeckyl.  It is <i>also</i> a git repository with the following remotes:
+<li><code>&lt;site-root&gt;/_deploy</code> is a sub-directory that is maintained by
+Jekyll.  It is <i>also</i> a git repository with the following remotes:
 <pre class="example">
 origin  &lt;your-github-repository-path&gt; (fetch)
 origin  &lt;your-github-repository-path&gt; (push)
@@ -519,9 +519,9 @@ checked-out.
 </p>
 
 <p>
-One other note about this:  If you get an error from Jeckyl when it
+One other note about this:  If you get an error from Jekyll when it
 tries to deploy your site when it tries to push <i>master -&gt; master</i>,
-you need to go into the <code>_deploy</code> subdirectory and do something like
+you need to go into the <code>_deploy</code> sub-directory and do something like
 this:
 </p>
 
@@ -538,13 +538,13 @@ git push origin master
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Fixing Scrolling on Asus C200MA-EDU-4GB]]></title>
+    <title type="html"><![CDATA[Fixing Scrolling on ASUS C200MA-EDU-4GB]]></title>
     <link href="http://blog.gordontillman.info/blog/2015-01-04-fixing-scrolling-on-asus-c200ma-edu-4gb.html"/>
     <updated>2015-01-04T00:00:00-06:00</updated>
     <id>http://blog.gordontillman.info/blog/fixing-scrolling-on-asus-c200ma-edu-4gb</id>
     <content type="html"><![CDATA[<p>
 One thing that really bugged me with my new ASUS C22MA Chromebook was
-the way that trackpad scrolling worked.  By default it is exactly the
+the way that track-pad scrolling worked.  By default it is exactly the
 opposite of my MacBook Pro.
 </p>
 
@@ -573,10 +573,10 @@ Switching channels is easy:
 </li>
 <li>Select <i>Settings</i>
 </li>
-<li>Click the <i>About Chroms OS</i> link in the upper-right corner of the
+<li>Click the <i>About ChromeOS</i> link in the upper-right corner of the
 <i>Settings</i> window.
 </li>
-<li>Click the <i>More info&#x2026;</i> link just below the button labelled <i>Check
+<li>Click the <i>More info&#x2026;</i> link just below the button labeled <i>Check
 for and apply updates</i>.
 </li>
 <li>Click on the <i>Change channel&#x2026;</i> button and follow the directions.
@@ -666,7 +666,7 @@ this post will cover the steps I followed to get this going.
 <div class="outline-text-2" id="text-4">
 <p>
 The exact procedure required to enable dev mode will vary from one
-Chromebook to another.  For an Asus C200 it is extremely simple.
+Chromebook to another.  For an ASUS C200 it is extremely simple.
 </p>
 
 <ol class="org-ol">
@@ -793,8 +793,8 @@ hitting <i>enter</i>.
 
 <p>
 By default this will start up the Ubuntu windowing system in full
-screen mode.  To toggle fullscreen mode just hit what would be the F4
-button on the top row of the keyboard.  On my Asus this button looks
+screen mode.  To toggle full-screen mode just hit what would be the F4
+button on the top row of the keyboard.  On my ASUS this button looks
 like a rectangle with little arrow-heads in the top-left and
 bottom-right corners.  Google calls this <i>immersive mode</i>.
 </p>
@@ -905,7 +905,7 @@ installed via <a href="http://www.quicklisp.org/">Quicklisp</a> on Ubuntu 14.04 
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-sh">sudo apt-get instal sbcl sbcl-doc
+<pre class="src src-sh">sudo apt-get install sbcl sbcl-doc
 </pre>
 </div>
 </div>
@@ -1397,7 +1397,7 @@ then cheese.
 
 <p>
 Cover the container tightly and refrigerate at least 2 hours to allow
-the flavors to blend.  I alway try and make it a day ahead of time.
+the flavors to blend.  I always try and make it a day ahead of time.
 </p>
 </div>
 </div>
@@ -1495,7 +1495,7 @@ carry-over to second spread)
 <ul class="org-ul">
 <li>day (1-31)
 </li>
-<li>two letters of weekday; e.g., &#8216;Mo&#8217; for monday, etc.
+<li>two letters of weekday; e.g., &#8216;Mo&#8217; for Monday, etc.
 </li>
 </ul>
 </li>

@@ -1,4 +1,4 @@
-#+TITLE: Fixing Scrolling on Asus C200MA-EDU-4GB
+#+TITLE: Fixing Scrolling on ASUS C200MA-EDU-4GB
 #+DATE: 2015-01-04
 #+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
 #+JEKYLL_LAYOUT: post
@@ -6,7 +6,7 @@
 #+JEKYLL_PUBLISHED: true
 
 One thing that really bugged me with my new ASUS C22MA Chromebook was
-the way that trackpad scrolling worked.  By default it is exactly the
+the way that track-pad scrolling worked.  By default it is exactly the
 opposite of my MacBook Pro.
 
 {{{more}}}
@@ -23,9 +23,9 @@ Switching channels is easy:
 
 - Click on the status area in the lower-right corner of the screen.
 - Select /Settings/
-- Click the /About Chroms OS/ link in the upper-right corner of the
+- Click the /About ChromeOS/ link in the upper-right corner of the
   /Settings/ window.
-- Click the /More info.../ link just below the button labelled /Check
+- Click the /More info.../ link just below the button labeled /Check
   for and apply updates/.
 - Click on the /Change channel.../ button and follow the directions.
 
