@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2015-01-08T15:04:07-06:00</updated>
+  <updated>2015-01-08T18:01:26-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -12,6 +12,107 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mounting External Drives - Ubuntu 14.04 and Chrombook]]></title>
+    <link href="http://blog.gordontillman.info/blog/2015-01-08-mounting-external-drives---ubuntu-14.04-and-chrombook.html"/>
+    <updated>2015-01-08T00:00:00-06:00</updated>
+    <id>http://blog.gordontillman.info/blog/mounting-external-drives&#8212;ubuntu-14.04-and-chrombook</id>
+    <content type="html"><![CDATA[<p>
+OK, this post is part of my continuing experiments with an ASUS C200
+Chromebook.  I have installed Ubuntu 14.04 using <i>crouton</i>.
+</p>
+
+
+
+
+<p>
+I had created two partitions on a Micro SD Card, one as Fat32 (EsFat
+actually) and the other as ext4.  
+</p>
+
+
+
+
+<p>
+The FAT32 partion mounts at <code>/media/removeable/share</code> and the ext4
+partition mounts at <code>/media/removeable/gordy</code>.  I tried storing
+various projects on the ext4 partition but when I tried to build from
+that partition I would get a permissions error.
+</p>
+
+
+
+
+<p>
+<!-- more -->
+</p>
+
+
+
+
+<p>
+Long story short, it turns out that the the ChromeOS side is mountint
+the ext4 partition with <i>noexec</i> permissions.  That was causing all
+the problems.  The solution turned out to be simple.  Just a single
+command to remount the partition (issued from the Ubuntu side) does
+the trick:
+</p>
+
+
+
+
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo mount -t ext4 -o remount,rw /dev/mmcblk1p1 /var/host/media/removable/gordy
+</pre>
+</div>
+
+
+
+
+<p>
+So, in the above command:
+</p>
+
+
+
+
+<ul class="org-ul">
+<li><code>-t ext4</code> is the type of the partition.  I had previously formatted
+it as ext4.
+</li>
+<li><code>-o remount,rw</code> tells the system to remote the partion with
+read/write privileges
+</li>
+<li><code>/dev/mmcblk1p1</code> is the path to the partition that needs to be
+mounted.  It will likely be different on your machine.  You can find
+out what your device path is by just typing <code>mount</code> with no
+arguments and grepping for the name of the volume.
+</li>
+<li><code>/var/host/media/removable/gordy</code> is the mount point.  A careful
+reader will notice that this is different than what I wrote at the
+top of the post (<code>/media/removeable/gordy</code>).  Well as it turns out
+<code>/media/removeable</code> is a symbolic link to
+<code>/var/host/media/removeable</code> and if you try to mount to
+<code>/media/removeable/gordy</code> the mount command complains about trying
+to follow too many symbolic links.  Please note that this mount path
+will also be different on you machine, unless you named your
+partition &#8220;gordy&#8221; as well. :-)
+</li>
+</ul>
+
+
+
+
+<p>
+Anyway, after remounting I am able to use my ext4 partition to hold
+projects and be able to <code>./configure</code> and <code>make</code> out of directories on
+the partition just fine.
+</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Installing Xmonad on Ubuntu 14.04 LTS]]></title>
@@ -668,187 +769,6 @@ While still in the SBCL session
 <pre class="src src-sh">(ql:quickload <span style="color: #70c0b1;">"quicklisp-slime-helper"</span>)
 </pre>
 </div>
-</div>
-</div>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Building Emacs 24.4 on Ubuntu 14.04]]></title>
-    <link href="http://blog.gordontillman.info/blog/2015-01-01-building-emacs-24.4-on-ubuntu-14.04.html"/>
-    <updated>2015-01-01T00:00:00-06:00</updated>
-    <id>http://blog.gordontillman.info/blog/building-emacs-24.4-on-ubuntu-14.04</id>
-    <content type="html"><![CDATA[<p>
-I recently signed up for a Virtual Private Server (VPS) with <a href="https://vpsdime.com">vpsdime</a>.
-The idea is to set-up a complete development environment for all of my
-work and personal projects that I can access from a low-end device
-like a <a href="https://www.google.com/chrome/devices/">Chromebook</a> or an <a href="https://www.apple.com/ipad/">iPad</a> (with a suitable SSH app installed).
-</p>
-
-
-
-
-<p>
-<!-- more -->
-</p>
-
-
-
-
-<p>
-I opted for the <i>High RAM VPS</i>, which has the following
-specifications:
-</p>
-
-
-
-
-<ul class="org-ul">
-<li>6 GB RAM
-</li>
-<li>4 CPUs
-</li>
-<li>30GB Storage
-</li>
-<li>2TB/month traffic
-</li>
-<li>10 Gb connection
-</li>
-</ul>
-
-
-
-
-<p>
-It is very reasonably priced at only $7.00/month.  I had it spun up
-with Ubuntu 14.04 LTS.
-</p>
-
-
-
-
-<p>
-My first requirements were installing <a href="http://www.gnu.org/software/emacs/">Emacs 24.4</a> 24.3 is the only
-version available in the repositories and I found no <a href="https://launchpad.net/ubuntu/+ppas">Personal Package
-Archive (PPA)</a> that already supplied it. The remainder of this post
-documents the steps required to do this.
-</p>
-
-
-
-
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Dependencies</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-There are a few things you need to have installed before you can build
-Emacs.  You need to update your list of <a href="https://help.ubuntu.com/community/Repositories/CommandLine">repository sources</a> first.
-</p>
-
-<p>
-Edit the file <code>/etc/apt/sources.list</code> as root.  On a new Ubuntu 14.04 instance
-it looks like this:
-</p>
-
-<pre class="example">
-deb http://archive.ubuntu.com/ubuntu trusty main restricted universe
-deb http://archive.ubuntu.com/ubuntu trusty-updates main restricted universe
-deb http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
-deb http://archive.canonical.com/ubuntu trusty partner
-</pre>
-
-<p>
-You need to enable the source code repositories.  This is very simple
-to do.  Just duplicate the first four lines in the file and change
-<code>deb</code> at the beginning of the line to <code>deb-src</code>.  When you have done
-this the file will look like this:
-</p>
-
-<pre class="example">
-deb http://archive.ubuntu.com/ubuntu trusty main restricted universe
-deb http://archive.ubuntu.com/ubuntu trusty-updates main restricted universe
-deb http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
-deb http://archive.canonical.com/ubuntu trusty partner
-deb-src http://archive.ubuntu.com/ubuntu trusty main restricted universe
-deb-src http://archive.ubuntu.com/ubuntu trusty-updates main restricted universe
-deb-src http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
-deb-src http://archive.canonical.com/ubuntu trusty partner
-</pre>
-
-<p>
-Save your changes and then run the following command:
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-sh">sudo apt-get update
-</pre>
-</div>
-
-<p>
-Now you can install the dependencies that you will need:
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-sh">sudo apt-get install build-essential
-sudo apt-get build-dep emacs24
-</pre>
-</div>
-</div>
-</div>
-
-
-
-
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Building Emacs 24.4</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-I like to organize my projects in a directory hierarchy like this:
-</p>
-
-<ul class="org-ul">
-<li><code>$HOME/Projects/</code>
-<ul class="org-ul">
-<li><code>0-9/</code>
-</li>
-<li><code>a/</code>
-</li>
-<li><code>b/</code>
-</li>
-<li>&#x2026;
-</li>
-<li><code>z/</code>
-</li>
-</ul>
-</li>
-</ul>
-
-<p>
-So, my Emacs build would be located in the <code>$HOME/Projects/e</code>
-directory.  Please feel free to ignore the above.  It is just a
-personal preference.  With that out of the way, here we go&#x2026;
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-sh">mkdir -p $<span style="color: #e7c547;">HOME</span>/Projects/e
-<span style="color: #c397d8;">cd</span> $<span style="color: #e7c547;">HOME</span>/Projects/e
-wget ftp.gnu.org/gnu/emacs/emacs-24.4.tar.xz
-tar -xf emacs-24.4.tar.xz
-rm emacs-24.4.tar.xz
-<span style="color: #c397d8;">cd</span> emacs-24.4
-./configure
-make
-sudo make install
-</pre>
-</div>
-
-<p>
-That&#8217;s all there is to it!
-</p>
 </div>
 </div>
 
