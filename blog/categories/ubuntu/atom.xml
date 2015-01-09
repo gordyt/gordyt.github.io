@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | GordyBlog]]></title>
   <link href="http://blog.gordontillman.info/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://blog.gordontillman.info/"/>
-  <updated>2015-01-09T09:23:59-06:00</updated>
+  <updated>2015-01-09T09:42:08-06:00</updated>
   <id>http://blog.gordontillman.info/</id>
   <author>
     <name><![CDATA[Gordon Tillman]]></name>
@@ -35,7 +35,7 @@ actually) and the other as ext4.
 
 
 <p>
-The FAT32 partion mounts at <code>/media/removeable/share</code> and the ext4
+The FAT32 partition mounts at <code>/media/removeable/share</code> and the ext4
 partition mounts at <code>/media/removeable/gordy</code>.  I tried storing
 various projects on the ext4 partition but when I tried to build from
 that partition I would get a permissions error.
@@ -52,7 +52,7 @@ that partition I would get a permissions error.
 
 
 <p>
-Long story short, it turns out that the the ChromeOS side is mountint
+Long story short, it turns out that the the ChromeOS side is mounting
 the ext4 partition with <i>noexec</i> permissions.  That was causing all
 the problems.  The solution turned out to be simple.  Just a single
 command to remount the partition (issued from the Ubuntu side) does
@@ -82,7 +82,7 @@ So, in the above command:
 <li><code>-t ext4</code> is the type of the partition.  I had previously formatted
 it as ext4.
 </li>
-<li><code>-o remount,rw</code> tells the system to remote the partion with
+<li><code>-o remount,rw</code> tells the system to remote the partition with
 read/write privileges
 </li>
 <li><code>/dev/mmcblk1p1</code> is the path to the partition that needs to be
@@ -233,7 +233,7 @@ you want.  Then exit the program.
 <h3 id="sec-3-2">Restoring Desktop when you Log in</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
-Edit the file <code>$HOME/.xinitrc</code> (it may not already exit).
+Edit the file <code>$HOME/.xinitrc</code> (it may not already exist).
 </p>
 
 <p>

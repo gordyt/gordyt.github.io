@@ -68,7 +68,7 @@ you want.  Then exit the program.
 
 *** Restoring Desktop when you Log in
 
-Edit the file ~$HOME/.xinitrc~ (it may not already exit).
+Edit the file ~$HOME/.xinitrc~ (it may not already exist).
 
 Add the following:
 
