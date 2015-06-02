@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Fun With Clojure Macros - GordyBlog</title>
+  <meta name="author" content="Gordon Tillman">
+
+  
+  <meta name="description" content="It all started innocently enough. I had a deftype that was
+implementing several protocols. I had written all of the protocol
+functions inside the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.gordontillman.info/blog/2015-06-02-fun-with-clojure-macros.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="GordyBlog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-58201516-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">GordyBlog</a></h1>
+  
+    <h2>Yet another blogging experiment&#8230;</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.gordontillman.info" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Fun With Clojure Macros</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-02'><span class='date'>2015-06-02 (Tuesday)</span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>
+It all started innocently enough.  I had a <code>deftype</code> that was
+implementing several protocols.  I had written all of the protocol
+functions inside the body of the <code>deftype</code>.  And even though each
+function, by itself, wasn&#8217;t overly large, the entire blob of code was
+getting out of hand.
+</p>
+
+<p>
+Here is a tiny little example with some made-up protocols and a type
+that embedded the protocol implementation inside the <code>deftype</code>.  In
+the actual code there were many more methods that needed to be
+implemented.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defprotocol</span> <span style="color: #7aa6da;">Proto1</span>
+  (p11 [this])
+  (p12 [this foo bar]))
+(<span style="color: #b9ca4a;">defprotocol</span> <span style="color: #7aa6da;">Proto2</span>
+  (p21 [this])
+  (p22 [this baz bin]))
+(<span style="color: #b9ca4a;">deftype</span> <span style="color: #7aa6da;">MyType</span> [item1 item2 item3 item4]
+  <span style="color: #7aa6da;">Proto1</span>
+  (p11 [this] ...)
+  (p12 [this foo bar] ...)
+  <span style="color: #7aa6da;">Proto2</span>
+  (p21 [this] ...)
+  (p22 [this baz bin] ...))
+</pre>
+</div>
+
+<p>
+<!-- more -->
+</p>
+
+<p>
+A little investigation showed that it was pretty trivial to move the
+methods out of the body of the <code>deftype</code> and then just do something
+like the following.  Keep in mind that the functions, protocols, etc.,
+are just BS ones I made up for this post.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defprotocol</span> <span style="color: #7aa6da;">Proto1</span>
+  (p11 [this])
+  (p12 [this foo bar]))
+(<span style="color: #b9ca4a;">defprotocol</span> <span style="color: #7aa6da;">Proto2</span>
+  (p21 [this])
+  (p22 [this baz bin]))
+(<span style="color: #b9ca4a;">deftype</span> <span style="color: #7aa6da;">MyType</span> [item1 item2 item3 item4])
+
+(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p11</span> [this] ...)
+(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p12</span> [this foo bar] ...)
+
+(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p21</span> [this] ...)
+(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p22</span> [this baz bin] ...)
+
+(<span style="color: #b9ca4a;">def</span> <span style="color: #e7c547;">p1map</span> {<span style="color: #7aa6da;">:p11</span> mt-p11 <span style="color: #7aa6da;">:p12</span> mt-p12})
+(<span style="color: #b9ca4a;">def</span> <span style="color: #e7c547;">p2map</span> {<span style="color: #7aa6da;">:p21</span> mt-p21 <span style="color: #7aa6da;">:p22</span> mt-p22})
+
+(extend <span style="color: #7aa6da;">MyType</span>
+  <span style="color: #7aa6da;">Proto1</span>
+  p1map
+  <span style="color: #7aa6da;">Proto2</span>
+  p2map)
+</pre>
+</div>
+
+<p>
+That was all well and good, except for one thing.  Before, when the
+protocol methods were all defined inside the body of the type, they
+had full access to all of the type&#8217;s data; e.g., <code>item1</code>, <code>item2</code>,
+etc.
+</p>
+
+<p>
+This was no longer the case.  Now every time that one of the type&#8217;s
+instance data was used it had to be looked-up laboriously like this.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p11</span> [this]
+  (<span style="color: #b9ca4a;">let</span> [item1 (<span style="color: #c397d8;">.item1</span> this)
+        item2 (<span style="color: #c397d8;">.item2</span> this)
+        ...]
+    ...))
+</pre>
+</div>
+
+<p>
+That was tedious.  And even if I switched over to using a <code>defrecord</code>
+instead of a <code>deftype</code>, I had to do this&#x2026;
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p11</span> [this]
+  (<span style="color: #b9ca4a;">let</span> [item1 (<span style="color: #7aa6da;">:item1</span> this)
+        item2 (<span style="color: #7aa6da;">:item2</span> this)
+        ...]
+    ...))
+</pre>
+</div>
+
+<p>
+&#x2026;or this&#x2026;
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p11</span> [this]
+  (<span style="color: #b9ca4a;">let</span> [{<span style="color: #7aa6da;">:keys</span> [<span style="color: #7aa6da;">:item1</span> <span style="color: #7aa6da;">:item2</span> <span style="color: #7aa6da;">:item3</span> <span style="color: #7aa6da;">:item4</span>]} this]
+    <span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">original function body goes here</span>
+    ...))
+</pre>
+</div>
+
+<p>
+&#x2026;or (the correct way)&#x2026;
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p11</span> [{<span style="color: #7aa6da;">:keys</span> [<span style="color: #7aa6da;">:item1</span> <span style="color: #7aa6da;">:item2</span> ...] <span style="color: #7aa6da;">:as</span> this}]
+  ...)
+</pre>
+</div>
+
+<p>
+Now, keep in mind that, what I just showed you where the values were
+destructured nicely (and still giving access to the &#8220;this&#8221; argument,
+if needed) is absolutely the right way to do it.
+</p>
+
+<p>
+But we played around with the idea of writing a macro that would
+<i>automatically</i> make all of the record&#8217;s data available to the
+existing functions.  That turned out to be an interesting exercise and
+was a really small amount of code.
+</p>
+
+<p>
+But it made us uncomfortable using the technique because, even though
+the resulting code was completely correct, it made it seemed a bit too
+much like magic.  We agreed that it was a mis-use of macros.
+</p>
+
+<p>
+This is the macro and its helper function.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">map-&gt;letx</span> [m &amp; body]
+  (eval `(<span style="color: #b9ca4a;">let</span> [{<span style="color: #7aa6da;">:keys</span> ~(vec (keys m))} ~m]
+     ~@body)))
+
+(<span style="color: #b9ca4a;">defmacro</span> <span style="color: #e78c45;">map-&gt;let</span> [m &amp; body]
+  `(map-&gt;letx ~m  (<span style="color: #b9ca4a;">quote</span> ~@body)))
+</pre>
+</div>
+
+<p>
+And you would use it like this.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p11</span> [this]
+  (map-&gt;let this
+            <span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">old function body goes here.  All of the instance data of the</span>
+            <span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">record is available without going through "this."</span>
+            <span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">e.g., item1, item2, item3, item4</span>
+            ...))
+</pre>
+</div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Gordon Tillman</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-06-02'><span class='date'>2015-06-02 (Tuesday)</span> <span class='time'>12:00 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/clojure/'>clojure</a>, <a class='category' href='/blog/categories/lisp/'>lisp</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.gordontillman.info/blog/2015-06-02-fun-with-clojure-macros.html" data-via="gordyt" data-counturl="http://blog.gordontillman.info/blog/2015-06-02-fun-with-clojure-macros.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015-01-09-installing-ubuntu-14.04-lts-with-i3-window-manager-on-chromebook.html" title="Previous Post: Installing Ubuntu 14.04 LTS with i3 Window Manager on Chromebook">&laquo; Installing Ubuntu 14.04 LTS with i3 Window Manager on Chromebook</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015-06-02-fun-with-clojure-macros.html">Fun With Clojure Macros</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015-01-09-installing-ubuntu-14.04-lts-with-i3-window-manager-on-chromebook.html">Installing Ubuntu 14.04 LTS With I3 Window Manager on Chromebook</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015-01-08-mounting-external-drives---ubuntu-14.04-and-chrombook.html">Mounting External Drives - Ubuntu 14.04 and Chromebook</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015-01-08-installing-xmonad-on-ubuntu-14.04-lts.html">Installing Xmonad on Ubuntu 14.04 LTS</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015-01-08-chromebook-performance-test---c720-vs-c200.html">Chromebook Performance Test - C720 vs C200</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/gordyt">@gordyt</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'gordyt',
+            count: 1,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/+GordonTillmanTexas?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Gordon Tillman -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

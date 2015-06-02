@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Lisp | GordyBlog]]></title>
+  <link href="http://blog.gordontillman.info/blog/categories/lisp/atom.xml" rel="self"/>
+  <link href="http://blog.gordontillman.info/"/>
+  <updated>2015-06-02T14:55:42-05:00</updated>
+  <id>http://blog.gordontillman.info/</id>
+  <author>
+    <name><![CDATA[Gordon Tillman]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Fun With Clojure Macros]]></title>
+    <link href="http://blog.gordontillman.info/blog/2015-06-02-fun-with-clojure-macros.html"/>
+    <updated>2015-06-02T00:00:00-05:00</updated>
+    <id>http://blog.gordontillman.info/blog/fun-with-clojure-macros</id>
+    <content type="html"><![CDATA[<p>
+It all started innocently enough.  I had a <code>deftype</code> that was
+implementing several protocols.  I had written all of the protocol
+functions inside the body of the <code>deftype</code>.  And even though each
+function, by itself, wasn&#8217;t overly large, the entire blob of code was
+getting out of hand.
+</p>
+
+
+
+
+<p>
+Here is a tiny little example with some made-up protocols and a type
+that embedded the protocol implementation inside the <code>deftype</code>.  In
+the actual code there were many more methods that needed to be
+implemented.
+</p>
+
+
+
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defprotocol</span> <span style="color: #7aa6da;">Proto1</span>
+  (p11 [this])
+  (p12 [this foo bar]))
+(<span style="color: #b9ca4a;">defprotocol</span> <span style="color: #7aa6da;">Proto2</span>
+  (p21 [this])
+  (p22 [this baz bin]))
+(<span style="color: #b9ca4a;">deftype</span> <span style="color: #7aa6da;">MyType</span> [item1 item2 item3 item4]
+  <span style="color: #7aa6da;">Proto1</span>
+  (p11 [this] ...)
+  (p12 [this foo bar] ...)
+  <span style="color: #7aa6da;">Proto2</span>
+  (p21 [this] ...)
+  (p22 [this baz bin] ...))
+</pre>
+</div>
+
+
+
+
+<p>
+<!-- more -->
+</p>
+
+
+
+
+<p>
+A little investigation showed that it was pretty trivial to move the
+methods out of the body of the <code>deftype</code> and then just do something
+like the following.  Keep in mind that the functions, protocols, etc.,
+are just BS ones I made up for this post.
+</p>
+
+
+
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defprotocol</span> <span style="color: #7aa6da;">Proto1</span>
+  (p11 [this])
+  (p12 [this foo bar]))
+(<span style="color: #b9ca4a;">defprotocol</span> <span style="color: #7aa6da;">Proto2</span>
+  (p21 [this])
+  (p22 [this baz bin]))
+(<span style="color: #b9ca4a;">deftype</span> <span style="color: #7aa6da;">MyType</span> [item1 item2 item3 item4])
+
+(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p11</span> [this] ...)
+(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p12</span> [this foo bar] ...)
+
+(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p21</span> [this] ...)
+(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p22</span> [this baz bin] ...)
+
+(<span style="color: #b9ca4a;">def</span> <span style="color: #e7c547;">p1map</span> {<span style="color: #7aa6da;">:p11</span> mt-p11 <span style="color: #7aa6da;">:p12</span> mt-p12})
+(<span style="color: #b9ca4a;">def</span> <span style="color: #e7c547;">p2map</span> {<span style="color: #7aa6da;">:p21</span> mt-p21 <span style="color: #7aa6da;">:p22</span> mt-p22})
+
+(extend <span style="color: #7aa6da;">MyType</span>
+  <span style="color: #7aa6da;">Proto1</span>
+  p1map
+  <span style="color: #7aa6da;">Proto2</span>
+  p2map)
+</pre>
+</div>
+
+
+
+
+<p>
+That was all well and good, except for one thing.  Before, when the
+protocol methods were all defined inside the body of the type, they
+had full access to all of the type&#8217;s data; e.g., <code>item1</code>, <code>item2</code>,
+etc.
+</p>
+
+
+
+
+<p>
+This was no longer the case.  Now every time that one of the type&#8217;s
+instance data was used it had to be looked-up laboriously like this.
+</p>
+
+
+
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p11</span> [this]
+  (<span style="color: #b9ca4a;">let</span> [item1 (<span style="color: #c397d8;">.item1</span> this)
+        item2 (<span style="color: #c397d8;">.item2</span> this)
+        ...]
+    ...))
+</pre>
+</div>
+
+
+
+
+<p>
+That was tedious.  And even if I switched over to using a <code>defrecord</code>
+instead of a <code>deftype</code>, I had to do this&#x2026;
+</p>
+
+
+
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p11</span> [this]
+  (<span style="color: #b9ca4a;">let</span> [item1 (<span style="color: #7aa6da;">:item1</span> this)
+        item2 (<span style="color: #7aa6da;">:item2</span> this)
+        ...]
+    ...))
+</pre>
+</div>
+
+
+
+
+<p>
+&#x2026;or this&#x2026;
+</p>
+
+
+
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p11</span> [this]
+  (<span style="color: #b9ca4a;">let</span> [{<span style="color: #7aa6da;">:keys</span> [<span style="color: #7aa6da;">:item1</span> <span style="color: #7aa6da;">:item2</span> <span style="color: #7aa6da;">:item3</span> <span style="color: #7aa6da;">:item4</span>]} this]
+    <span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">original function body goes here</span>
+    ...))
+</pre>
+</div>
+
+
+
+
+<p>
+&#x2026;or (the correct way)&#x2026;
+</p>
+
+
+
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p11</span> [{<span style="color: #7aa6da;">:keys</span> [<span style="color: #7aa6da;">:item1</span> <span style="color: #7aa6da;">:item2</span> ...] <span style="color: #7aa6da;">:as</span> this}]
+  ...)
+</pre>
+</div>
+
+
+
+
+<p>
+Now, keep in mind that, what I just showed you where the values were
+destructured nicely (and still giving access to the &#8220;this&#8221; argument,
+if needed) is absolutely the right way to do it.
+</p>
+
+
+
+
+<p>
+But we played around with the idea of writing a macro that would
+<i>automatically</i> make all of the record&#8217;s data available to the
+existing functions.  That turned out to be an interesting exercise and
+was a really small amount of code.
+</p>
+
+
+
+
+<p>
+But it made us uncomfortable using the technique because, even though
+the resulting code was completely correct, it made it seemed a bit too
+much like magic.  We agreed that it was a mis-use of macros.
+</p>
+
+
+
+
+<p>
+This is the macro and its helper function.
+</p>
+
+
+
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">map-&gt;letx</span> [m &amp; body]
+  (eval `(<span style="color: #b9ca4a;">let</span> [{<span style="color: #7aa6da;">:keys</span> ~(vec (keys m))} ~m]
+     ~@body)))
+
+(<span style="color: #b9ca4a;">defmacro</span> <span style="color: #e78c45;">map-&gt;let</span> [m &amp; body]
+  `(map-&gt;letx ~m  (<span style="color: #b9ca4a;">quote</span> ~@body)))
+</pre>
+</div>
+
+
+
+
+<p>
+And you would use it like this.
+</p>
+
+
+
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defn-</span> <span style="color: #e78c45;">mt-p11</span> [this]
+  (map-&gt;let this
+            <span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">old function body goes here.  All of the instance data of the</span>
+            <span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">record is available without going through "this."</span>
+            <span style="color: #969896; font-style: italic;">;; </span><span style="color: #969896; font-style: italic;">e.g., item1, item2, item3, item4</span>
+            ...))
+</pre>
+</div>
+
+]]></content>
+  </entry>
+  
+</feed>

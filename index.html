@@ -9,9 +9,9 @@
   <meta name="author" content="Gordon Tillman">
 
   
-  <meta name="description" content="
-In this post I document the steps required to install and configure
-Ubuntu 14.04 LTS (Trusty Tahr) on an ASUS C200MA-EDU-4GB Chromebook. ">
+  <meta name="description" content="It all started innocently enough. I had a deftype that was
+implementing several protocols. I had written all of the protocol
+functions inside the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,72 @@ Ubuntu 14.04 LTS (Trusty Tahr) on an ASUS C200MA-EDU-4GB Chromebook. ">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015-06-02-fun-with-clojure-macros.html">Fun With Clojure Macros</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-02'><span class='date'>2015-06-02 (Tuesday)</span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>
+It all started innocently enough.  I had a <code>deftype</code> that was
+implementing several protocols.  I had written all of the protocol
+functions inside the body of the <code>deftype</code>.  And even though each
+function, by itself, wasn&#8217;t overly large, the entire blob of code was
+getting out of hand.
+</p>
+
+<p>
+Here is a tiny little example with some made-up protocols and a type
+that embedded the protocol implementation inside the <code>deftype</code>.  In
+the actual code there were many more methods that needed to be
+implemented.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #b9ca4a;">defprotocol</span> <span style="color: #7aa6da;">Proto1</span>
+  (p11 [this])
+  (p12 [this foo bar]))
+(<span style="color: #b9ca4a;">defprotocol</span> <span style="color: #7aa6da;">Proto2</span>
+  (p21 [this])
+  (p22 [this baz bin]))
+(<span style="color: #b9ca4a;">deftype</span> <span style="color: #7aa6da;">MyType</span> [item1 item2 item3 item4]
+  <span style="color: #7aa6da;">Proto1</span>
+  (p11 [this] ...)
+  (p12 [this foo bar] ...)
+  <span style="color: #7aa6da;">Proto2</span>
+  (p21 [this] ...)
+  (p22 [this baz bin] ...))
+</pre>
+</div>
+
+<p>
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015-06-02-fun-with-clojure-macros.html">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -453,46 +519,6 @@ installed via <a href="http://www.quicklisp.org/">Quicklisp</a> on Ubuntu 14.04 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015-01-01-building-emacs-24.4-on-ubuntu-14.04.html">Building Emacs 24.4 on Ubuntu 14.04</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-01-01'><span class='date'>2015-01-01 (Thursday)</span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>
-I recently signed up for a Virtual Private Server (VPS) with <a href="https://vpsdime.com">vpsdime</a>.
-The idea is to set-up a complete development environment for all of my
-work and personal projects that I can access from a low-end device
-like a <a href="https://www.google.com/chrome/devices/">Chromebook</a> or an <a href="https://www.apple.com/ipad/">iPad</a> (with a suitable SSH app installed).
-</p>
-
-<p>
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015-01-01-building-emacs-24.4-on-ubuntu-14.04.html">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -508,6 +534,10 @@ like a <a href="https://www.google.com/chrome/devices/">Chromebook</a> or an <a 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015-06-02-fun-with-clojure-macros.html">Fun With Clojure Macros</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015-01-09-installing-ubuntu-14.04-lts-with-i3-window-manager-on-chromebook.html">Installing Ubuntu 14.04 LTS With I3 Window Manager on Chromebook</a>
       </li>
     
@@ -521,10 +551,6 @@ like a <a href="https://www.google.com/chrome/devices/">Chromebook</a> or an <a 
     
       <li class="post">
         <a href="/blog/2015-01-08-chromebook-performance-test---c720-vs-c200.html">Chromebook Performance Test - C720 vs C200</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015-01-04-running-chrooted-desktop-in-background.html">Running Chrooted Desktop in Background</a>
       </li>
     
   </ul>
