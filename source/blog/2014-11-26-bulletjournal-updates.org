@@ -1,10 +1,8 @@
 #+TITLE: BulletJournal Updates
 #+DATE: 2014-11-26
-#+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
-#+JEKYLL_LAYOUT: post
-#+JEKYLL_CATEGORIES: journal
-#+JEKYLL_PUBLISHED: true
-
+#+HUGO_BASE_DIR: ../hugo-site/
+#+HUGO_SECTION: posts
+#+HUGO_TAGS: journal
 I have been using Ryder Carroll's [[http://www.bulletjournal.com][BulletJournal]] techniques for
 organizing my analog journal for about 6 months now.  There are
 several things I really like about this system.

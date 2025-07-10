@@ -1,9 +1,8 @@
 #+TITLE: Layered Garden Salad
 #+DATE: 2014-11-26
-#+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
-#+JEKYLL_LAYOUT: post
-#+JEKYLL_CATEGORIES: recipe
-#+JEKYLL_PUBLISHED: true
+#+HUGO_BASE_DIR: ../hugo-site/
+#+HUGO_SECTION: posts
+#+HUGO_TAGS: recipe
 
 This is a great recipe from page 105 of /¡Delicioso! Cooking South
 Texas Style/, compiled by the Junior League of Corpus Christi, Inc.,

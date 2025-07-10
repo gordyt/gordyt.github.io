@@ -1,9 +1,8 @@
 #+TITLE: Fixing Scrolling on ASUS C200MA-EDU-4GB
 #+DATE: 2015-01-04
-#+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
-#+JEKYLL_LAYOUT: post
-#+JEKYLL_CATEGORIES: chromebook
-#+JEKYLL_PUBLISHED: true
+#+HUGO_BASE_DIR: ../hugo-site/
+#+HUGO_SECTION: posts
+#+HUGO_TAGS: chromebook
 
 One thing that really bugged me with my new ASUS C22MA Chromebook was
 the way that track-pad scrolling worked.  By default it is exactly the

@@ -1,9 +1,8 @@
 #+TITLE: Installing xmonad on Ubuntu 14.04 LTS
 #+DATE: 2015-01-08
-#+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
-#+JEKYLL_LAYOUT: post
-#+JEKYLL_CATEGORIES: ubuntu
-#+JEKYLL_PUBLISHED: true
+#+HUGO_BASE_DIR: ../hugo-site/
+#+HUGO_SECTION: posts
+#+HUGO_TAGS: ubuntu
 
 After seeing with my own eyes how rapidly the very minimal the [[http://xmonad.org/][xmonad
 windowing manager]] starts up after logging in, I decided to upgrade an

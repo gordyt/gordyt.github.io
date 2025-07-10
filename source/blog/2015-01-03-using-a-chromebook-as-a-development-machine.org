@@ -1,9 +1,8 @@
 #+TITLE: Using a Chromebook as a Development Machine
 #+DATE: 2015-01-03
-#+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
-#+JEKYLL_LAYOUT: post
-#+JEKYLL_CATEGORIES: chromebook linux ubuntu
-#+JEKYLL_PUBLISHED: true
+#+HUGO_BASE_DIR: ../hugo-site/
+#+HUGO_SECTION: posts
+#+HUGO_TAGS: chromebook linux ubuntu
 
 ** Introduction
 I have been interested in seeing if would be possible to set-up a

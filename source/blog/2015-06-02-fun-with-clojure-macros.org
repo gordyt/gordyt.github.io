@@ -1,9 +1,8 @@
 #+TITLE: Fun with Clojure Macros
 #+DATE: 2015-06-02
-#+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
-#+JEKYLL_LAYOUT: post
-#+JEKYLL_CATEGORIES: clojure lisp
-#+JEKYLL_PUBLISHED: true
+#+HUGO_BASE_DIR: ../hugo-site/
+#+HUGO_SECTION: posts
+#+HUGO_TAGS: clojure lisp
 
 It all started innocently enough.  I had a =deftype= that was
 implementing several protocols.  I had written all of the protocol

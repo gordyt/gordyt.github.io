@@ -1,9 +1,8 @@
 #+TITLE: Chromebook Performance Test - C720 vs C200
 #+DATE: 2015-01-08
-#+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
-#+JEKYLL_LAYOUT: post
-#+JEKYLL_CATEGORIES: chromebook emacs
-#+JEKYLL_PUBLISHED: true
+#+HUGO_BASE_DIR: ../hugo-site/
+#+HUGO_SECTION: posts
+#+HUGO_TAGS: chromebook emacs
 
 My buddy at work just got a new Acer C720-3404 Chromebook.  I have the
 ASUS C200MA-EDU-4GB Chromebook.  We decided to do a real-world

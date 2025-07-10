@@ -1,9 +1,8 @@
 #+TITLE: Mounting External Drives - Ubuntu 14.04 and Chromebook
 #+DATE: 2015-01-08
-#+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
-#+JEKYLL_LAYOUT: post
-#+JEKYLL_CATEGORIES: chromebook ubuntu
-#+JEKYLL_PUBLISHED: true
+#+HUGO_BASE_DIR: ../hugo-site/
+#+HUGO_SECTION: posts
+#+HUGO_TAGS: chromebook ubuntu
 
 OK, this post is part of my continuing experiments with an ASUS C200
 Chromebook.  I have installed Ubuntu 14.04 using /crouton/.

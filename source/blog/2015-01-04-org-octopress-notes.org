@@ -1,9 +1,8 @@
 #+TITLE: Org-Octopress Notes
 #+DATE: 2015-01-04
-#+SETUPFILE: ~/.emacs.d/octopress-setupfile.txt
-#+JEKYLL_LAYOUT: post
-#+JEKYLL_CATEGORIES: emacs octopress github
-#+JEKYLL_PUBLISHED: true
+#+HUGO_BASE_DIR: ../hugo-site/
+#+HUGO_SECTION: posts
+#+HUGO_TAGS: emacs octopress github
 
 I've been trying to sort-out the details of what is required to be
 able to maintain a GitHub pages site via Octopress / org-octopress
