@@ -10,7 +10,9 @@ from multiple computers. The slight complicating factor is that the
 location of the git repository for the site is different on the two
 computers that I am using.
 
-{{{more}}}
+#+BEGIN_EXPORT html
+<!--more-->
+#+END_EXPORT
 
 The main laptop is my MacBook Pro.  The new, secondary, laptop is an
 ASUS C200 with 4GB RAM and a 32GB SSD.  Here are the repository

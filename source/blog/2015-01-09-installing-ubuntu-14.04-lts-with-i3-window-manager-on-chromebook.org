@@ -7,7 +7,9 @@
 In this post I document the steps required to install and configure
 Ubuntu 14.04 LTS (Trusty Tahr) on an ASUS C200MA-EDU-4GB Chromebook.
 
-{{{more}}}
+#+BEGIN_EXPORT html
+<!--more-->
+#+END_EXPORT
 
 I'm going to assume that you have already downloaded [[https://github.com/dnschneid/crouton][Crouton]].
 

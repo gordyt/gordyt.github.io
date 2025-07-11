@@ -9,7 +9,9 @@ ASUS C200MA-EDU-4GB Chromebook.  We decided to do a real-world
 performance comparison with a sample task that we have to perform all
 of the time.
 
-{{{more}}}
+#+BEGIN_EXPORT html
+<!--more-->
+#+END_EXPORT
 
 This task was compiling a program.  We choose to compile Emacs 24.4.
 Here are the results.

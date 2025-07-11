@@ -9,7 +9,9 @@ Ubuntu on an ASUS C200 Chromebook.  One thing I noticed was that,
 while you are running Ubuntu, it ties up your terminal window and
 makes it unavailable for doing other tasks.
 
-{{{more}}}
+#+BEGIN_EXPORT html
+<!--more-->
+#+END_EXPORT
 
 
 According to some information that [[https://github.com/dnschneid/crouton][I found here]], you should be able to

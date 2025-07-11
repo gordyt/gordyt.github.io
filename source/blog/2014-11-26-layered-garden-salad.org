@@ -8,7 +8,9 @@ This is a great recipe from page 105 of /¡Delicioso! Cooking South
 Texas Style/, compiled by the Junior League of Corpus Christi, Inc.,
 ISBN ~0-9609144-0-4~.
 
-{{{more}}}
+#+BEGIN_EXPORT html
+<!--more-->
+#+END_EXPORT
 
 ** Ingredients
 

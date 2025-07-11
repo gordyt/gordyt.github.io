@@ -11,7 +11,9 @@ given that you won't be running any virtual machines on a Chromebook.
 But at this point I think you can do pretty much any thing else you
 might need to do.
 
-{{{more}}}
+#+BEGIN_EXPORT html
+<!--more-->
+#+END_EXPORT
 
 ** A Minimal Chromebook
 

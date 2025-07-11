@@ -18,7 +18,9 @@ Configuration file: /Users/gordy/Documents/Personal/gordyt.github.io/_config.yml
 jekyll 2.5.2 | Error:  undefined method `sort!' for nil:NilClass
 #+END_EXAMPLE
 
-{{{more}}}
+#+BEGIN_EXPORT html
+<!--more-->
+#+END_EXPORT
 
 Did some search about and found [[http://uli-heller.github.io/blog/2013/08/04/octopress-category-generator/][this website]].  It is in German;
 however the code sample was clear.  The fix was to edit the file

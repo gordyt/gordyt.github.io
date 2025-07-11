@@ -9,7 +9,9 @@ windowing manager]] starts up after logging in, I decided to upgrade an
 old Linux box I have at the office that is running Ubuntu 14.04 LTS
 (Trusy Tahr).
 
-{{{more}}}
+#+BEGIN_EXPORT html
+<!--more-->
+#+END_EXPORT
 
 ** David Brewer's Easy Installation
 

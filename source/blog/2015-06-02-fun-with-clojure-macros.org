@@ -32,7 +32,10 @@ implemented.
 
 #+END_SRC
 
-{{{more}}}
+#+BEGIN_EXPORT html
+<!--more-->
+#+END_EXPORT
+
 
 A little investigation showed that it was pretty trivial to move the
 methods out of the body of the =deftype= and then just do something

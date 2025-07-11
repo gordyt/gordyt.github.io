@@ -15,7 +15,9 @@ several things I really like about this system.
 
 Regarding that last point, I would like to share my current setup.
 
-{{{more}}}
+#+BEGIN_EXPORT html
+<!--more-->
+#+END_EXPORT
 
 * Pages
 ** Main Index (one full spread)

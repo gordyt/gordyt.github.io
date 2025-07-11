@@ -7,7 +7,9 @@
 
 This is a test post using [[https://github.com/yoshinari-nomura/org-octopress][org-octopress]]...
 
-{{{more}}}
+#+BEGIN_EXPORT html
+<!--more-->
+#+END_EXPORT
 
 OK, this is a test post that we are composing in [[http://orgmode.org][org-mode]].
 

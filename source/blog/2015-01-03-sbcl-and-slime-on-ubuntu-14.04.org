@@ -8,8 +8,9 @@ This post describes how to install and configure Steel Bank Common
 Lisp (SBCL) with SLIME (Superior Lisp Interaction Mode) that is
 installed via [[http://www.quicklisp.org/][Quicklisp]] on Ubuntu 14.04 LTS (Trusty Tahr).
 
-
-{{{more}}}
+#+BEGIN_EXPORT html
+<!--more-->
+#+END_EXPORT
 
 ** Install SBCL
 

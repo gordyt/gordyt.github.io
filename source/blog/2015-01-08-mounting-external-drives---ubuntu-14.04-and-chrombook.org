@@ -15,8 +15,9 @@ partition mounts at ~/media/removeable/gordy~.  I tried storing
 various projects on the ext4 partition but when I tried to build from
 that partition I would get a permissions error.
 
-
-{{{more}}}
+#+BEGIN_EXPORT html
+<!--more-->
+#+END_EXPORT
 
 Long story short, it turns out that the the ChromeOS side is mounting
 the ext4 partition with /noexec/ permissions.  That was causing all

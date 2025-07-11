@@ -1,0 +1,7 @@
+baseURL = 'https://blog.gordontillman.info/'
+languageCode = 'en-us'
+title = "Gordy's Blog"
+theme = 'ananke'
+
+[markup.goldmark.renderer]
+unsafe = true
