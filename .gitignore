@@ -12,6 +12,6 @@ source/stylesheets/screen.css
 vendor
 node_modules
 Gemfile.lock
-hugo-site/public/
-hugo-site/.hugo_build.lock
-hugo-site/resources/
+source/hugo-site/public/
+source/hugo-site/.hugo_build.lock
+source/hugo-site/resources/
