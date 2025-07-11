@@ -6,12 +6,7 @@
 _deploy
 public
 sass.old
-source.old
-source/_stash
-source/stylesheets/screen.css
 vendor
 node_modules
 Gemfile.lock
-source/hugo-site/public/
 source/hugo-site/.hugo_build.lock
-source/hugo-site/resources/
