@@ -46,6 +46,6 @@ the flavors to blend.  I always try and make it a day ahead of time.
 
 <div class="HTML">
 
-{% img /images/2014-11-26-layered-garden-salad/salad.jpg %}
+&lt;img src="/images/2014-11-26-layered-garden-salad/salad.jpg" alt="Layered Garden Salad"&gt;
 
 </div>
