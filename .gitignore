@@ -1,12 +1,2 @@
-.bundle
 .DS_Store
-.sass-cache
-.gist-cache
-.pygments-cache
-_deploy
-public
-sass.old
-vendor
-node_modules
-Gemfile.lock
 source/hugo-site/.hugo_build.lock
