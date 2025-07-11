@@ -44,8 +44,4 @@ the flavors to blend.  I always try and make it a day ahead of time.
 
 ## Finished Recipe {#finished-recipe}
 
-<div class="HTML">
-
-&lt;img src="/images/2014-11-26-layered-garden-salad/salad.jpg" alt="Layered Garden Salad"&gt;
-
-</div>
+[Layered Garden Salad](/images/2014-11-26-layered-garden-salad/salad.jpg)
