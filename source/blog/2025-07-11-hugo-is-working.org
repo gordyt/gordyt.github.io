@@ -1,0 +1,14 @@
+#+TITLE: Hugo Conversion is Working!
+#+DATE: 2025-07-11
+#+HUGO_BASE_DIR: ../hugo-site/
+#+HUGO_SECTION: posts
+#+HUGO_TAGS: tags
+#+HUGO_CATEGORIES: categories
+
+I have finally gotten around to resurrecting my old test blog
+~blog.gordontillman.info~. I was originally using ~org-octopress~
+which I like.  But after it was no longer supported/available I just
+quit maintaining this blog.
+
+As of today it is now a Hugo blog, currently using the ~ananke~ theme.
+Checkout the ~source~ branch of [[https://github.com/gordyt/gordyt.github.io][this repo]] for details.
