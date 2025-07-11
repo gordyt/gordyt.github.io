@@ -3,5 +3,10 @@ languageCode = 'en-us'
 title = "Gordy's Blog"
 theme = 'ananke'
 
+[params]
+subtitle = 'Yet another blogging experiment...'
+author = 'Gordon Tillman'
+description = 'A place to share ideas and commentary.'
+
 [markup.goldmark.renderer]
 unsafe = true
