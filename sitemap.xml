@@ -2,22 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog.gordontillman.info/categories/</loc>
+    <lastmod>2025-07-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.gordontillman.info/categories/categories/</loc>
+    <lastmod>2025-07-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.gordontillman.info/</loc>
+    <lastmod>2025-07-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.gordontillman.info/posts/2025-07-11-hugo-is-working/</loc>
+    <lastmod>2025-07-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.gordontillman.info/posts/</loc>
+    <lastmod>2025-07-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.gordontillman.info/tags/</loc>
+    <lastmod>2025-07-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.gordontillman.info/tags/tags/</loc>
+    <lastmod>2025-07-11T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blog.gordontillman.info/tags/clojure/</loc>
     <lastmod>2015-06-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.gordontillman.info/posts/2015-06-02-fun-with-clojure-macros/</loc>
     <lastmod>2015-06-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.gordontillman.info/</loc>
-    <lastmod>2015-06-02T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blog.gordontillman.info/tags/lisp/</loc>
-    <lastmod>2015-06-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.gordontillman.info/posts/</loc>
-    <lastmod>2015-06-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.gordontillman.info/tags/</loc>
     <lastmod>2015-06-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.gordontillman.info/tags/chromebook/</loc>
@@ -94,7 +106,5 @@
   </url><url>
     <loc>https://blog.gordontillman.info/posts/2014-11-26-second-post-this-time-with-org/</loc>
     <lastmod>2014-11-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.gordontillman.info/categories/</loc>
   </url>
 </urlset>

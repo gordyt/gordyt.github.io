@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Gordy&#39;s Blog</title>
+    <link>https://blog.gordontillman.info/categories/categories/</link>
+    <description>Recent content in Categories on Gordy&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.gordontillman.info/categories/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo Conversion is Working!</title>
+      <link>https://blog.gordontillman.info/posts/2025-07-11-hugo-is-working/</link>
+      <pubDate>Fri, 11 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.gordontillman.info/posts/2025-07-11-hugo-is-working/</guid>
+      <description>&lt;p&gt;I have finally gotten around to resurrecting my old test blog&#xA;&lt;code&gt;blog.gordontillman.info&lt;/code&gt;. I was originally using &lt;code&gt;org-octopress&lt;/code&gt;&#xA;which I like.  But after it was no longer supported/available I just&#xA;quit maintaining this blog.&lt;/p&gt;&#xA;&lt;p&gt;As of today it is now a Hugo blog, currently using the &lt;code&gt;ananke&lt;/code&gt; theme.&#xA;Checkout the &lt;code&gt;source&lt;/code&gt; branch of &lt;a href=&#34;https://github.com/gordyt/gordyt.github.io&#34;&gt;this repo&lt;/a&gt; for details.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
