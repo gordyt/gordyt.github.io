@@ -1,8 +1,0 @@
-#+TITLE: BulletJournal Updates
-#+DATE: 2014-11-26
-#+HUGO_BASE_DIR: ../hugo-site/
-#+HUGO_SECTION: posts
-#+HUGO_TAGS: org hugo
-I finally got a chance to revisit this site.  Just finished migrating
-it to rendering the HTML from ~org-octopress~ to [[https://en.wikipedia.org/wiki/Hugo_(software)][Hugo]]. This was fairly
-painless.
