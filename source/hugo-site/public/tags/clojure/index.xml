@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clojure on Gordy&#39;s Blog</title>
+    <link>https://blog.gordontillman.info/tags/clojure/</link>
+    <description>Recent content in Clojure on Gordy&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 02 Jun 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.gordontillman.info/tags/clojure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fun with Clojure Macros</title>
+      <link>https://blog.gordontillman.info/posts/2015-06-02-fun-with-clojure-macros/</link>
+      <pubDate>Tue, 02 Jun 2015 00:00:00 +0000</pubDate>
+      <guid>https://blog.gordontillman.info/posts/2015-06-02-fun-with-clojure-macros/</guid>
+      <description>&lt;p&gt;It all started innocently enough.  I had a &lt;code&gt;deftype&lt;/code&gt; that was&#xA;implementing several protocols.  I had written all of the protocol&#xA;functions inside the body of the &lt;code&gt;deftype&lt;/code&gt;.  And even though each&#xA;function, by itself, wasn&amp;rsquo;t overly large, the entire blob of code was&#xA;getting out of hand.&lt;/p&gt;&#xA;&lt;p&gt;Here is a tiny little example with some made-up protocols and a type&#xA;that embedded the protocol implementation inside the &lt;code&gt;deftype&lt;/code&gt;.  In&#xA;the actual code there were many more methods that needed to be&#xA;implemented.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;defprotocol &lt;/span&gt;Proto1&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#a6e22e&#34;&gt;p11&lt;/span&gt; [this])&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#a6e22e&#34;&gt;p12&lt;/span&gt; [this foo bar]))&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;defprotocol &lt;/span&gt;Proto2&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#a6e22e&#34;&gt;p21&lt;/span&gt; [this])&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#a6e22e&#34;&gt;p22&lt;/span&gt; [this baz bin]))&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;deftype &lt;/span&gt;MyType [item1 item2 item3 item4]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  Proto1&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#a6e22e&#34;&gt;p11&lt;/span&gt; [this] ...)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#a6e22e&#34;&gt;p12&lt;/span&gt; [this foo bar] ...)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  Proto2&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#a6e22e&#34;&gt;p21&lt;/span&gt; [this] ...)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#a6e22e&#34;&gt;p22&lt;/span&gt; [this baz bin] ...))&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+  </channel>
+</rss>
