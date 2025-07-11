@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Gordy&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.148.0">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/tags/lisp/index.xml" rel="alternate" type="application/rss+xml" title="Gordy&#39;s Blog" />
+      <link href="/tags/lisp/index.xml" rel="feed" type="application/rss+xml" title="Gordy&#39;s Blog" />
+      
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/tags/lisp/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/tags/lisp/">
+  <meta property="og:site_name" content="Gordy&#39;s Blog">
+  <meta property="og:title" content="Lisp">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="Lisp">
+  <meta itemprop="datePublished" content="2015-06-02T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2015-06-02T00:00:00+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Lisp">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Gordy&#39;s Blog
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Lisp
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “Lisp”</p>
+    </div>
+  </article>
+  <div class="mw8 center">
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2015-06-02-fun-with-clojure-macros/" class="link black dim">
+        Fun with Clojure Macros
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>It all started innocently enough.  I had a <code>deftype</code> that was
+implementing several protocols.  I had written all of the protocol
+functions inside the body of the <code>deftype</code>.  And even though each
+function, by itself, wasn&rsquo;t overly large, the entire blob of code was
+getting out of hand.</p>
+<p>Here is a tiny little example with some made-up protocols and a type
+that embedded the protocol implementation inside the <code>deftype</code>.  In
+the actual code there were many more methods that needed to be
+implemented.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">defprotocol </span>Proto1
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">p11</span> [this])
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">p12</span> [this foo bar]))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">defprotocol </span>Proto2
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">p21</span> [this])
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">p22</span> [this baz bin]))
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">deftype </span>MyType [item1 item2 item3 item4]
+</span></span><span style="display:flex;"><span>  Proto1
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">p11</span> [this] ...)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">p12</span> [this foo bar] ...)
+</span></span><span style="display:flex;"><span>  Proto2
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">p21</span> [this] ...)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">p22</span> [this baz bin] ...))
+</span></span></code></pre></div>
+    </div>
+    <a href="/posts/2015-06-02-fun-with-clojure-macros/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  Gordy's Blog 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

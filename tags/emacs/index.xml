@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emacs on Gordy&#39;s Blog</title>
+    <link>http://localhost:1313/tags/emacs/</link>
+    <description>Recent content in Emacs on Gordy&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 08 Jan 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chromebook Performance Test - C720 vs C200</title>
+      <link>http://localhost:1313/posts/2015-01-08-chromebook-performance-test---c720-vs-c200/</link>
+      <pubDate>Thu, 08 Jan 2015 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2015-01-08-chromebook-performance-test---c720-vs-c200/</guid>
+      <description>&lt;p&gt;My buddy at work just got a new Acer C720-3404 Chromebook.  I have the&#xA;ASUS C200MA-EDU-4GB Chromebook.  We decided to do a real-world&#xA;performance comparison with a sample task that we have to perform all&#xA;of the time.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Org-Octopress Notes</title>
+      <link>http://localhost:1313/posts/2015-01-04-org-octopress-notes/</link>
+      <pubDate>Sun, 04 Jan 2015 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2015-01-04-org-octopress-notes/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been trying to sort-out the details of what is required to be&#xA;able to maintain a GitHub pages site via Octopress / org-octopress&#xA;from multiple computers. The slight complicating factor is that the&#xA;location of the git repository for the site is different on the two&#xA;computers that I am using.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Building Emacs 24.4 on Ubuntu 14.04</title>
+      <link>http://localhost:1313/posts/2015-01-01-building-emacs-24.4-on-ubuntu-14.04/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2015-01-01-building-emacs-24.4-on-ubuntu-14.04/</guid>
+      <description>&lt;p&gt;I recently signed up for a Virtual Private Server (VPS) with &lt;a href=&#34;https://vpsdime.com&#34;&gt;vpsdime&lt;/a&gt;.&#xA;The idea is to set-up a complete development environment for all of my&#xA;work and personal projects that I can access from a low-end device&#xA;like a &lt;a href=&#34;https://www.google.com/chrome/devices/&#34;&gt;Chromebook&lt;/a&gt; or an &lt;a href=&#34;https://www.apple.com/ipad/&#34;&gt;iPad&lt;/a&gt; (with a suitable SSH app installed).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Second Post: This Time with Org</title>
+      <link>http://localhost:1313/posts/2014-11-26-second-post-this-time-with-org/</link>
+      <pubDate>Wed, 26 Nov 2014 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2014-11-26-second-post-this-time-with-org/</guid>
+      <description>&lt;h2 id=&#34;testing-org-octopress&#34;&gt;Testing Org-Octopress&lt;/h2&gt;&#xA;&lt;p&gt;This is a test post using &lt;a href=&#34;https://github.com/yoshinari-nomura/org-octopress&#34;&gt;org-octopress&lt;/a&gt;&amp;hellip;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

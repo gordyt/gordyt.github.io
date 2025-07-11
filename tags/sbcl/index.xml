@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sbcl on Gordy&#39;s Blog</title>
+    <link>http://localhost:1313/tags/sbcl/</link>
+    <description>Recent content in Sbcl on Gordy&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 Jan 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/sbcl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SBCL and Slime on Ubuntu 14.04</title>
+      <link>http://localhost:1313/posts/2015-01-03-sbcl-and-slime-on-ubuntu-14.04/</link>
+      <pubDate>Sat, 03 Jan 2015 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2015-01-03-sbcl-and-slime-on-ubuntu-14.04/</guid>
+      <description>&lt;p&gt;This post describes how to install and configure Steel Bank Common&#xA;Lisp (SBCL) with SLIME (Superior Lisp Interaction Mode) that is&#xA;installed via &lt;a href=&#34;http://www.quicklisp.org/&#34;&gt;Quicklisp&lt;/a&gt; on Ubuntu 14.04 LTS (Trusty Tahr).&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

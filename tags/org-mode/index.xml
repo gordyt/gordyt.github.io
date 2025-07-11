@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Org-Mode on Gordy&#39;s Blog</title>
+    <link>http://localhost:1313/tags/org-mode/</link>
+    <description>Recent content in Org-Mode on Gordy&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Nov 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/org-mode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Liquid Exception: undefined method sort</title>
+      <link>http://localhost:1313/posts/2014-11-26-liquid-exception-undefined-method-sort/</link>
+      <pubDate>Wed, 26 Nov 2014 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2014-11-26-liquid-exception-undefined-method-sort/</guid>
+      <description>&lt;p&gt;I was getting this strange error when I tried to generate my site via&#xA;the &lt;code&gt;rake generate&lt;/code&gt; command:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;## Generating Site with Jekyll&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;identical source/stylesheets/screen.css&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Configuration file: /Users/gordy/Documents/Personal/gordyt.github.io/_config.yml&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Source: source&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       Destination: public&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      Generating...&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  Liquid Exception: undefined method `sort!&amp;#39; for nil:NilClass in _includes/post/categories.html, included in _layouts/post.html&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;jekyll 2.5.2 | Error:  undefined method `sort!&amp;#39; for nil:NilClass&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>Second Post: This Time with Org</title>
+      <link>http://localhost:1313/posts/2014-11-26-second-post-this-time-with-org/</link>
+      <pubDate>Wed, 26 Nov 2014 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2014-11-26-second-post-this-time-with-org/</guid>
+      <description>&lt;h2 id=&#34;testing-org-octopress&#34;&gt;Testing Org-Octopress&lt;/h2&gt;&#xA;&lt;p&gt;This is a test post using &lt;a href=&#34;https://github.com/yoshinari-nomura/org-octopress&#34;&gt;org-octopress&lt;/a&gt;&amp;hellip;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

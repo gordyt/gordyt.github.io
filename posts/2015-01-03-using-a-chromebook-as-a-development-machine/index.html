@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Using a Chromebook as a Development Machine | Gordy&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Introduction
+I have been interested in seeing if would be possible to set-up a
+Chromebook so that some serious development work with it.  It&rsquo;s a
+given that you won&rsquo;t be running any virtual machines on a Chromebook.
+But at this point I think you can do pretty much any thing else you
+might need to do.">
+    <meta name="generator" content="Hugo 0.148.0">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    <meta name="author" content="Gordon Tillman">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/2015-01-03-using-a-chromebook-as-a-development-machine/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/2015-01-03-using-a-chromebook-as-a-development-machine/">
+  <meta property="og:site_name" content="Gordy&#39;s Blog">
+  <meta property="og:title" content="Using a Chromebook as a Development Machine">
+  <meta property="og:description" content="Introduction I have been interested in seeing if would be possible to set-up a Chromebook so that some serious development work with it. It’s a given that you won’t be running any virtual machines on a Chromebook. But at this point I think you can do pretty much any thing else you might need to do.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2015-01-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2015-01-03T00:00:00+00:00">
+    <meta property="article:tag" content="Chromebook">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Ubuntu">
+
+  <meta itemprop="name" content="Using a Chromebook as a Development Machine">
+  <meta itemprop="description" content="Introduction I have been interested in seeing if would be possible to set-up a Chromebook so that some serious development work with it. It’s a given that you won’t be running any virtual machines on a Chromebook. But at this point I think you can do pretty much any thing else you might need to do.">
+  <meta itemprop="datePublished" content="2015-01-03T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2015-01-03T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1007">
+  <meta itemprop="keywords" content="Chromebook,Linux,Ubuntu">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Using a Chromebook as a Development Machine">
+  <meta name="twitter:description" content="Introduction I have been interested in seeing if would be possible to set-up a Chromebook so that some serious development work with it. It’s a given that you won’t be running any virtual machines on a Chromebook. But at this point I think you can do pretty much any thing else you might need to do.">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Gordy&#39;s Blog
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Using a Chromebook as a Development Machine</h1>
+      
+      <p class="tracked"><strong>Gordon Tillman</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2015-01-03T00:00:00Z">January 3, 2015</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="introduction">Introduction</h2>
+<p>I have been interested in seeing if would be possible to set-up a
+<a href="https://www.google.com/chrome/devices/">Chromebook</a> so that some serious development work with it.  It&rsquo;s a
+given that you won&rsquo;t be running any virtual machines on a Chromebook.
+But at this point I think you can do pretty much any thing else you
+might need to do.</p>
+<h2 id="a-minimal-chromebook">A Minimal Chromebook</h2>
+<p>First of all, let me say that I think that you need, at a minimum, a
+Chromebook that has 4GB of RAM and 32GB of local storage.  I decided
+on the <a href="http://smile.amazon.com/gp/product/B00KGI4XBI">ASUS model C200MA-EDU-4GB</a>.  This machine is very inexpensive,
+has a decent display and keyboard, and meets my minimum RAM/storage
+requirements.</p>
+<h2 id="options">Options</h2>
+<p>As I see it, there are at least two options you can choose that will
+let you use a Chromebook as a serious development machine.  I have
+tried both of these and am now using a combination of the two.</p>
+<p>The first option is to use a basically stock Chromebook in conjunction
+with an inexpensive Virtual Private Server (VPS).  For this to be a
+viable option you must be doing your work someplace where you have a
+decent Internet connection.</p>
+<p>You rent a VPS, install a nice Linux. I like Ubuntu 14.04 LTS (Trusty
+Tahr).  You install all of your tools there and use the Chromebook as
+a portable terminal that lets you access these tools.</p>
+<p>But what if you want the option of doing useful work from anywhere,
+whether or not you have a good Internet connection? In that case, we
+take a look at the second option.</p>
+<p>The second option is to enable developer mode on your Chromebook,
+install Linux in a chroot environment along with whatever tools you
+need, and work in ChromeOS or your chroot environment as needed.</p>
+<p>This turns out to be extremely easy to accomplish.  The remainder of
+this post will cover the steps I followed to get this going.</p>
+<h2 id="enabling-dev-mode">Enabling dev mode</h2>
+<p>The exact procedure required to enable dev mode will vary from one
+Chromebook to another.  For an ASUS C200 it is extremely simple.</p>
+<ol>
+<li>Tap the power button while pressing and holding the <em>esc</em> and
+<em>refresh</em> buttons.  Note that the <em>refresh</em> button is on the top
+row of keys and looks like a circular arrow.</li>
+<li>The Chromebook will reboot and you will see a screen that tells you
+that Chrome OS is missing or damaged.  Just hit <code>ctrl-d</code> and then
+<em>enter</em> to continue.</li>
+<li>The computer will restart and you will see a screen that tells you
+OS verification is off.  Hit <code>ctrl-d</code> to continue.</li>
+<li>Go take a break while your Chromebook&rsquo;s data is reset.  I didn&rsquo;t
+pay attention to how long it took, but you will get a textual
+progress bar at the top of the window while this is in progress.</li>
+<li>When it finally comes back up just connect to your wireless network
+and log-in as normal.</li>
+</ol>
+<p><strong>Note:</strong> From this point on you will always see the verification screen
+when you restart.  No worries, just hit <code>ctrl-d</code> to proceed.</p>
+<h2 id="installing-the-crouton-integration-chrome-extension">Installing the Crouton Integration Chrome extension</h2>
+<p>This is pretty cool.  It lets you run your Linux windowing manager in
+a Chrome frame that shows up on your dock at the bottom of the
+screen.  Let&rsquo;s go ahead and install it now so that it will be in place
+when your Ubuntu installation has finished.</p>
+<ul>
+<li>From Chrome, navigate <a href="https://chrome.google.com/webstore/detail/crouton-integration/gcpneefbbnfalgjniomfjknbcgkbijom">to this URL</a> and install the extension.  That&rsquo;s
+it!</li>
+</ul>
+<h2 id="installing-ubuntu-via-crouton">Installing Ubuntu via Crouton</h2>
+<p>Crouton stands for <em>Chromium OS Universal Chroot Environment</em>.  It is
+a very nice shell script that greatly simplifies the process of
+installing and running your Linux environment on the Chromebook.</p>
+<ul>
+<li><a href="https://goo.gl/fd3zc">Click here</a> from Chrome to download the latest version of the script.</li>
+<li>Pull up a terminal window as follows:
+<ul>
+<li>Hit <code>ctrl+alt+t</code></li>
+<li>Type <code>shell</code> and hit <em>enter</em>.</li>
+<li>Type <code>cd ~/Downloads</code> and hit <em>enter</em>.</li>
+<li>If you then enter <code>ls</code> you should see the Crouton script you just
+downloaded.</li>
+</ul>
+</li>
+</ul>
+<p>The instructions that follow assume that you want to install Ubuntu
+14.04 LTS using the <code>xfce</code> window manager.</p>
+<ul>
+<li>Type <code>sudo sh -e ./crouton -r trusty -t xfce,xiwi</code> and hit <em>enter</em>.</li>
+<li>After everything is installed you will be asked to enter a username
+and password.</li>
+</ul>
+<h2 id="running-ubuntu">Running Ubuntu</h2>
+<p>Here is the basic procedure for entering your chroot environment and
+starting your Ubuntu environment.</p>
+<ul>
+<li>If necessary, get a terminal session going.  Remember the steps to
+do this?
+<ul>
+<li>Hit <code>ctrl+alt+t</code></li>
+<li>Type <code>shell</code> and hit <em>enter</em>.</li>
+</ul>
+</li>
+<li>Enter the chroot environment by typing <code>sudo enter-chroot</code> and
+hitting <em>enter</em>.</li>
+<li>Start up the Ubuntu UI by typing <code>startxfce4</code> and hitting <em>enter</em>.</li>
+<li>As a shortcut you can do the following:
+<ul>
+<li>Pull up a terminal session</li>
+<li>Types <code>sudo startxfce4</code> and hit <em>enter</em>.</li>
+</ul>
+</li>
+</ul>
+<p>By default this will start up the Ubuntu windowing system in full
+screen mode.  To toggle full-screen mode just hit what would be the F4
+button on the top row of the keyboard.  On my ASUS this button looks
+like a rectangle with little arrow-heads in the top-left and
+bottom-right corners.  Google calls this <em>immersive mode</em>.</p>
+<h2 id="enable-verified-boot-and-auto-updates">Enable Verified Boot and Auto Updates</h2>
+<p>This tip came from <a href="https://sites.google.com/site/chromeoswikisite/home/what-s-new-in-dev-and-beta/shell-acess-with-verified-boot">here</a>.  Enabling developer mode will disable
+verified boot by default.  To fix it, just do the following:</p>
+<ul>
+<li>Open a shell and become root
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>Control-Alt-T
+</span></span><span style="display:flex;"><span>shell
+</span></span><span style="display:flex;"><span>sudo su -
+</span></span></code></pre></div></li>
+<li>If you have not already done so, set a password for the <em>root</em> user
+by entering the following command and following the prompts:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>chromeos-setdevpasswd
+</span></span></code></pre></div></li>
+<li>Enable verified boot from the root shell:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>crossystem dev_boot_usb<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> dev_boot_signed_only<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span></code></pre></div></li>
+</ul>
+<p>Please see the <a href="https://sites.google.com/site/chromeoswikisite/home/what-s-new-in-dev-and-beta/shell-acess-with-verified-boot">original post</a> for more information and some screen shots.</p>
+<h2 id="references">References</h2>
+<p>These are some of the sites I read through when setting up the
+Chromebook:</p>
+<ul>
+<li><a href="https://sites.google.com/site/chromeoswikisite/home/what-s-new-in-dev-and-beta/shell-acess-with-verified-boot">Shell Access With Verified Boot And Auto Updates</a></li>
+<li><a href="http://liliputing.com/2014/06/asus-c200-chromebook-enabling-dev-mode-installing-ubuntu.html">Asus C200 Chromebook: Enabling dev mode, installing Ubuntu</a></li>
+<li><a href="http://www.howtogeek.com/162120/how-to-install-ubuntu-linux-on-your-chromebook-with-crouton/">How to Install Ubuntu Linux on Your Chromebook with Crouton</a></li>
+<li><a href="https://github.com/dnschneid/crouton">David Schneider&rsquo;s Crouton GitHub Page</a></li>
+<li><a href="https://github.com/dnschneid/crouton/wiki/Security">David Schneider on Security</a></li>
+<li><a href="https://sites.google.com/site/chromeoswikisite/home">The Chrome OS Wiki</a></li>
+<li><a href="http://tomwwolf.com/chromebook-14-compedium/chromebook-crouton-cookbook/">Tom Wolf&rsquo;s Crouton Cookboook</a></li>
+<li><a href="https://plus.google.com/u/0/%2BFrancoisBeaufort/posts/JDVkXALPcNq">François Beaufort&rsquo;s Google+ Profile Page</a></li>
+<li><a href="http://fuyuko.net/basic-tweaks-and-tips-for-crouton-in-chromebook/">Fuyuko Gratton&rsquo;s Basic Tweaks and Tips for Crouton in Chromebook</a></li>
+<li><a href="http://www.postslush.com/2014/12/crouton-ubuntu-running-in-browser-tab.html">Crouton Ubuntu running in a browser tab of a Chromebook</a></li>
+<li><a href="https://support.google.com/chromebook/answer/183093?hl%3Den">Google&rsquo;s Supported file types and external devices</a></li>
+<li><a href="https://support.google.com/chromebook/answer/1047364?hl%3Den">Google&rsquo;s Chromebook Keyboard Features</a></li>
+<li><a href="http://vpsdime.com/">vpsdime</a> - Where my VPS lives</li>
+</ul><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/chromebook/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Chromebook</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/linux/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Linux</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/ubuntu/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Ubuntu</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/2015-01-03-sbcl-and-slime-on-ubuntu-14.04/">SBCL and Slime on Ubuntu 14.04</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/2015-01-01-building-emacs-24.4-on-ubuntu-14.04/">Building Emacs 24.4 on Ubuntu 14.04</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  Gordy's Blog 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

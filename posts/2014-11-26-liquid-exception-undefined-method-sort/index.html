@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Liquid Exception: undefined method sort | Gordy&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I was getting this strange error when I tried to generate my site via
+the rake generate command:
+## Generating Site with Jekyll
+identical source/stylesheets/screen.css
+Configuration file: /Users/gordy/Documents/Personal/gordyt.github.io/_config.yml
+            Source: source
+       Destination: public
+      Generating...
+  Liquid Exception: undefined method `sort!&#39; for nil:NilClass in _includes/post/categories.html, included in _layouts/post.html
+jekyll 2.5.2 | Error:  undefined method `sort!&#39; for nil:NilClass
+">
+    <meta name="generator" content="Hugo 0.148.0">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    <meta name="author" content="Gordon Tillman">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/2014-11-26-liquid-exception-undefined-method-sort/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/2014-11-26-liquid-exception-undefined-method-sort/">
+  <meta property="og:site_name" content="Gordy&#39;s Blog">
+  <meta property="og:title" content="Liquid Exception: undefined method sort">
+  <meta property="og:description" content="I was getting this strange error when I tried to generate my site via the rake generate command:
+## Generating Site with Jekyll identical source/stylesheets/screen.css Configuration file: /Users/gordy/Documents/Personal/gordyt.github.io/_config.yml Source: source Destination: public Generating... Liquid Exception: undefined method `sort!&#39; for nil:NilClass in _includes/post/categories.html, included in _layouts/post.html jekyll 2.5.2 | Error: undefined method `sort!&#39; for nil:NilClass">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2014-11-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2014-11-26T00:00:00+00:00">
+    <meta property="article:tag" content="Org-Mode">
+
+  <meta itemprop="name" content="Liquid Exception: undefined method sort">
+  <meta itemprop="description" content="I was getting this strange error when I tried to generate my site via the rake generate command:
+## Generating Site with Jekyll identical source/stylesheets/screen.css Configuration file: /Users/gordy/Documents/Personal/gordyt.github.io/_config.yml Source: source Destination: public Generating... Liquid Exception: undefined method `sort!&#39; for nil:NilClass in _includes/post/categories.html, included in _layouts/post.html jekyll 2.5.2 | Error: undefined method `sort!&#39; for nil:NilClass">
+  <meta itemprop="datePublished" content="2014-11-26T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2014-11-26T00:00:00+00:00">
+  <meta itemprop="wordCount" content="119">
+  <meta itemprop="keywords" content="Org-Mode">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Liquid Exception: undefined method sort">
+  <meta name="twitter:description" content="I was getting this strange error when I tried to generate my site via the rake generate command:
+## Generating Site with Jekyll identical source/stylesheets/screen.css Configuration file: /Users/gordy/Documents/Personal/gordyt.github.io/_config.yml Source: source Destination: public Generating... Liquid Exception: undefined method `sort!&#39; for nil:NilClass in _includes/post/categories.html, included in _layouts/post.html jekyll 2.5.2 | Error: undefined method `sort!&#39; for nil:NilClass">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Gordy&#39;s Blog
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Liquid Exception: undefined method sort</h1>
+      
+      <p class="tracked"><strong>Gordon Tillman</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2014-11-26T00:00:00Z">November 26, 2014</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>I was getting this strange error when I tried to generate my site via
+the <code>rake generate</code> command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>## Generating Site with Jekyll
+</span></span><span style="display:flex;"><span>identical source/stylesheets/screen.css
+</span></span><span style="display:flex;"><span>Configuration file: /Users/gordy/Documents/Personal/gordyt.github.io/_config.yml
+</span></span><span style="display:flex;"><span>            Source: source
+</span></span><span style="display:flex;"><span>       Destination: public
+</span></span><span style="display:flex;"><span>      Generating...
+</span></span><span style="display:flex;"><span>  Liquid Exception: undefined method `sort!&#39; for nil:NilClass in _includes/post/categories.html, included in _layouts/post.html
+</span></span><span style="display:flex;"><span>jekyll 2.5.2 | Error:  undefined method `sort!&#39; for nil:NilClass
+</span></span></code></pre></div><p>Did some search about and found <a href="http://uli-heller.github.io/blog/2013/08/04/octopress-category-generator/">this website</a>.  It is in German;
+however the code sample was clear.  The fix was to edit the file
+<code>plugins/category_generator.rb</code> as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">category_links</span>(categories)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> categories <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span>     <span style="color:#75715e"># Added this line</span>
+</span></span><span style="display:flex;"><span>    categories <span style="color:#f92672">=</span> categories<span style="color:#f92672">.</span>sort!<span style="color:#f92672">.</span>map { <span style="color:#f92672">|</span>c<span style="color:#f92672">|</span> category_link c }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> categories<span style="color:#f92672">.</span>length
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">when</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">when</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>      categories<span style="color:#f92672">[</span><span style="color:#ae81ff">0</span><span style="color:#f92672">].</span>to_s
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>categories<span style="color:#f92672">[</span><span style="color:#ae81ff">0</span><span style="color:#f92672">...-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">].</span>join(<span style="color:#e6db74">&#39;, &#39;</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">, </span><span style="color:#e6db74">#{</span>categories<span style="color:#f92672">[-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">]</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>                      <span style="color:#75715e"># Added this line</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/org-mode/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Org-Mode</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/2014-11-26-second-post-this-time-with-org/">Second Post: This Time with Org</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  Gordy's Blog 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
