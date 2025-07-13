@@ -50,8 +50,8 @@
 
   <meta itemprop="name" content="Tags">
   <meta itemprop="description" content="A place to share ideas and commentary.">
-  <meta itemprop="datePublished" content="2025-07-11T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-07-11T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2025-07-13T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-07-13T00:00:00+00:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Tags">
   <meta name="twitter:description" content="A place to share ideas and commentary.">
@@ -102,6 +102,391 @@
   </article>
   <div class="mw8 center">
     <section class="ph4">
+      
+        <h2 class="f1">
+          <a href="/tags/emacs/" class="link blue hover-black">
+            Tag: Emacs
+          </a>
+        </h2>
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2025-07-13-emacs-updates-to-support-new-hugo-powered-blog/" class="link black dim">
+        Emacs updates to support new hugo-powered blog
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>This has been an interesting day.  After getting the updates to the
+blog repo all updated and working well, I wanted to also update my
+Emacs configuration to make it a smoother experience to add new posts.</p>
+<p>So two main changes were required. The majority is in this one file,
+located in my `$HOME/.emacs.d/lisp` directory:</p>
+<h2 id="init-hugo-dot-el">init-hugo.el</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span><span style="color:#75715e">;;; init-hugo.el --- Blogging helpers for Hugo/ox-hugo  -*- lexical-binding: t; -*-</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; Author: Gordon Owen Tillman &lt;got@example.com&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; Namespace: got/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; Summary: Create date-prefixed Hugo posts with optional tag prompting</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;; Commentary:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; This file provides a helper function to create a new blog post in</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; `got/blog-directory`, using the ox-hugo front-matter conventions.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; All functions are namespaced with `got/` (Gordon Owen Tillman).</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;; Code:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(require <span style="color:#e6db74">&#39;subr-x</span>)  <span style="color:#75715e">;; for string-join</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(defcustom got/blog-directory
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;~/Projects/g/gordyt.github.io/source/blog/&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Directory where blog posts are stored.&#34;</span>
+</span></span><span style="display:flex;"><span>  :type <span style="color:#e6db74">&#39;string</span>
+</span></span><span style="display:flex;"><span>  :group <span style="color:#e6db74">&#39;got</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(defun got--collect-existing-tags ()
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Collect all unique tags from existing blog posts.&#34;</span>
+</span></span><span style="display:flex;"><span>  (let ((tags <span style="color:#f92672">&#39;</span>()))
+</span></span><span style="display:flex;"><span>    (dolist (file (<span style="color:#a6e22e">directory-files</span> got/blog-directory <span style="color:#66d9ef">t</span> <span style="color:#e6db74">&#34;\.org$&#34;</span>))
+</span></span><span style="display:flex;"><span>      (with-temp-buffer
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">insert-file-contents</span> file)
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">goto-char</span> (<span style="color:#a6e22e">point-min</span>))
+</span></span><span style="display:flex;"><span>        (when (<span style="color:#a6e22e">re-search-forward</span> <span style="color:#e6db74">&#34;^#\\+HUGO_TAGS:\\s-*\\(.*\\)&#34;</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>          (let ((line-tags (split-string (match-string <span style="color:#ae81ff">1</span>) <span style="color:#e6db74">&#34;[ ,]+&#34;</span> <span style="color:#66d9ef">t</span>)))
+</span></span><span style="display:flex;"><span>            (setq tags (<span style="color:#a6e22e">append</span> tags line-tags))))))
+</span></span><span style="display:flex;"><span>    (delete-dups tags)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(defun got/new-blog-post (title)
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Create a new org-mode blog post in `got/blog-directory` with TITLE.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Prompts for existing tags (with the option to add new ones).&#34;</span>
+</span></span><span style="display:flex;"><span>  (interactive <span style="color:#e6db74">&#34;sPost Title: &#34;</span>)
+</span></span><span style="display:flex;"><span>  (let* ((date (<span style="color:#a6e22e">format-time-string</span> <span style="color:#e6db74">&#34;%Y-%m-%d&#34;</span>))
+</span></span><span style="display:flex;"><span>         (slug (replace-regexp-in-string
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;[^a-z0-9-]&#34;</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>                (replace-regexp-in-string
+</span></span><span style="display:flex;"><span>                 <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#e6db74">&#34;-&#34;</span> (<span style="color:#a6e22e">downcase</span> title))))
+</span></span><span style="display:flex;"><span>         (filename (<span style="color:#a6e22e">expand-file-name</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;%s-%s.org&#34;</span> date slug) got/blog-directory))
+</span></span><span style="display:flex;"><span>         (existing-tags (got--collect-existing-tags))
+</span></span><span style="display:flex;"><span>         (chosen-tags
+</span></span><span style="display:flex;"><span>          (completing-read-multiple
+</span></span><span style="display:flex;"><span>           <span style="color:#e6db74">&#34;Select tags (or type new ones, space-separated): &#34;</span>
+</span></span><span style="display:flex;"><span>           existing-tags <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">nil</span>)))
+</span></span><span style="display:flex;"><span>    (find-file filename)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;#+TITLE: %s\n&#34;</span> title))
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;#+DATE: %s\n&#34;</span> date))
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> <span style="color:#e6db74">&#34;#+HUGO_BASE_DIR: ../hugo-site/\n&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> <span style="color:#e6db74">&#34;#+HUGO_SECTION: posts\n&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;#+HUGO_TAGS: %s\n&#34;</span>
+</span></span><span style="display:flex;"><span>                    (string-join chosen-tags <span style="color:#e6db74">&#34; &#34;</span>)))
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> <span style="color:#e6db74">&#34;#+HUGO_CATEGORIES: \n\n&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">message</span> <span style="color:#e6db74">&#34;New post created: %s&#34;</span> filename)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(provide <span style="color:#e6db74">&#39;init-hugo</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;; init-hugo.el ends here</span>
+</span></span></code></pre></div><p>Then just a minor update in `init.el` to load it:</p>
+    </div>
+    <a href="/posts/2025-07-13-emacs-updates-to-support-new-hugo-powered-blog/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2015-01-08-chromebook-performance-test---c720-vs-c200/" class="link black dim">
+        Chromebook Performance Test - C720 vs C200
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>My buddy at work just got a new Acer C720-3404 Chromebook.  I have the
+ASUS C200MA-EDU-4GB Chromebook.  We decided to do a real-world
+performance comparison with a sample task that we have to perform all
+of the time.</p>
+    </div>
+    <a href="/posts/2015-01-08-chromebook-performance-test---c720-vs-c200/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2015-01-04-org-octopress-notes/" class="link black dim">
+        Org-Octopress Notes
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I&rsquo;ve been trying to sort-out the details of what is required to be
+able to maintain a GitHub pages site via Octopress / org-octopress
+from multiple computers. The slight complicating factor is that the
+location of the git repository for the site is different on the two
+computers that I am using.</p>
+    </div>
+    <a href="/posts/2015-01-04-org-octopress-notes/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2015-01-01-building-emacs-24.4-on-ubuntu-14.04/" class="link black dim">
+        Building Emacs 24.4 on Ubuntu 14.04
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I recently signed up for a Virtual Private Server (VPS) with <a href="https://vpsdime.com">vpsdime</a>.
+The idea is to set-up a complete development environment for all of my
+work and personal projects that I can access from a low-end device
+like a <a href="https://www.google.com/chrome/devices/">Chromebook</a> or an <a href="https://www.apple.com/ipad/">iPad</a> (with a suitable SSH app installed).</p>
+    </div>
+    <a href="/posts/2015-01-01-building-emacs-24.4-on-ubuntu-14.04/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2014-11-26-second-post-this-time-with-org/" class="link black dim">
+        Second Post: This Time with Org
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="testing-org-octopress">Testing Org-Octopress</h2>
+<p>This is a test post using <a href="https://github.com/yoshinari-nomura/org-octopress">org-octopress</a>&hellip;</p>
+    </div>
+    <a href="/posts/2014-11-26-second-post-this-time-with-org/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/hugo/" class="link blue hover-black">
+            Tag: Hugo
+          </a>
+        </h2>
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2025-07-13-emacs-updates-to-support-new-hugo-powered-blog/" class="link black dim">
+        Emacs updates to support new hugo-powered blog
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>This has been an interesting day.  After getting the updates to the
+blog repo all updated and working well, I wanted to also update my
+Emacs configuration to make it a smoother experience to add new posts.</p>
+<p>So two main changes were required. The majority is in this one file,
+located in my `$HOME/.emacs.d/lisp` directory:</p>
+<h2 id="init-hugo-dot-el">init-hugo.el</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span><span style="color:#75715e">;;; init-hugo.el --- Blogging helpers for Hugo/ox-hugo  -*- lexical-binding: t; -*-</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; Author: Gordon Owen Tillman &lt;got@example.com&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; Namespace: got/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; Summary: Create date-prefixed Hugo posts with optional tag prompting</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;; Commentary:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; This file provides a helper function to create a new blog post in</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; `got/blog-directory`, using the ox-hugo front-matter conventions.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; All functions are namespaced with `got/` (Gordon Owen Tillman).</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;; Code:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(require <span style="color:#e6db74">&#39;subr-x</span>)  <span style="color:#75715e">;; for string-join</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(defcustom got/blog-directory
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;~/Projects/g/gordyt.github.io/source/blog/&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Directory where blog posts are stored.&#34;</span>
+</span></span><span style="display:flex;"><span>  :type <span style="color:#e6db74">&#39;string</span>
+</span></span><span style="display:flex;"><span>  :group <span style="color:#e6db74">&#39;got</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(defun got--collect-existing-tags ()
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Collect all unique tags from existing blog posts.&#34;</span>
+</span></span><span style="display:flex;"><span>  (let ((tags <span style="color:#f92672">&#39;</span>()))
+</span></span><span style="display:flex;"><span>    (dolist (file (<span style="color:#a6e22e">directory-files</span> got/blog-directory <span style="color:#66d9ef">t</span> <span style="color:#e6db74">&#34;\.org$&#34;</span>))
+</span></span><span style="display:flex;"><span>      (with-temp-buffer
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">insert-file-contents</span> file)
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">goto-char</span> (<span style="color:#a6e22e">point-min</span>))
+</span></span><span style="display:flex;"><span>        (when (<span style="color:#a6e22e">re-search-forward</span> <span style="color:#e6db74">&#34;^#\\+HUGO_TAGS:\\s-*\\(.*\\)&#34;</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>          (let ((line-tags (split-string (match-string <span style="color:#ae81ff">1</span>) <span style="color:#e6db74">&#34;[ ,]+&#34;</span> <span style="color:#66d9ef">t</span>)))
+</span></span><span style="display:flex;"><span>            (setq tags (<span style="color:#a6e22e">append</span> tags line-tags))))))
+</span></span><span style="display:flex;"><span>    (delete-dups tags)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(defun got/new-blog-post (title)
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Create a new org-mode blog post in `got/blog-directory` with TITLE.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Prompts for existing tags (with the option to add new ones).&#34;</span>
+</span></span><span style="display:flex;"><span>  (interactive <span style="color:#e6db74">&#34;sPost Title: &#34;</span>)
+</span></span><span style="display:flex;"><span>  (let* ((date (<span style="color:#a6e22e">format-time-string</span> <span style="color:#e6db74">&#34;%Y-%m-%d&#34;</span>))
+</span></span><span style="display:flex;"><span>         (slug (replace-regexp-in-string
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;[^a-z0-9-]&#34;</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>                (replace-regexp-in-string
+</span></span><span style="display:flex;"><span>                 <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#e6db74">&#34;-&#34;</span> (<span style="color:#a6e22e">downcase</span> title))))
+</span></span><span style="display:flex;"><span>         (filename (<span style="color:#a6e22e">expand-file-name</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;%s-%s.org&#34;</span> date slug) got/blog-directory))
+</span></span><span style="display:flex;"><span>         (existing-tags (got--collect-existing-tags))
+</span></span><span style="display:flex;"><span>         (chosen-tags
+</span></span><span style="display:flex;"><span>          (completing-read-multiple
+</span></span><span style="display:flex;"><span>           <span style="color:#e6db74">&#34;Select tags (or type new ones, space-separated): &#34;</span>
+</span></span><span style="display:flex;"><span>           existing-tags <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">nil</span>)))
+</span></span><span style="display:flex;"><span>    (find-file filename)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;#+TITLE: %s\n&#34;</span> title))
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;#+DATE: %s\n&#34;</span> date))
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> <span style="color:#e6db74">&#34;#+HUGO_BASE_DIR: ../hugo-site/\n&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> <span style="color:#e6db74">&#34;#+HUGO_SECTION: posts\n&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;#+HUGO_TAGS: %s\n&#34;</span>
+</span></span><span style="display:flex;"><span>                    (string-join chosen-tags <span style="color:#e6db74">&#34; &#34;</span>)))
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> <span style="color:#e6db74">&#34;#+HUGO_CATEGORIES: \n\n&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">message</span> <span style="color:#e6db74">&#34;New post created: %s&#34;</span> filename)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(provide <span style="color:#e6db74">&#39;init-hugo</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;; init-hugo.el ends here</span>
+</span></span></code></pre></div><p>Then just a minor update in `init.el` to load it:</p>
+    </div>
+    <a href="/posts/2025-07-13-emacs-updates-to-support-new-hugo-powered-blog/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/org-mode/" class="link blue hover-black">
+            Tag: Org-Mode
+          </a>
+        </h2>
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2025-07-13-emacs-updates-to-support-new-hugo-powered-blog/" class="link black dim">
+        Emacs updates to support new hugo-powered blog
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>This has been an interesting day.  After getting the updates to the
+blog repo all updated and working well, I wanted to also update my
+Emacs configuration to make it a smoother experience to add new posts.</p>
+<p>So two main changes were required. The majority is in this one file,
+located in my `$HOME/.emacs.d/lisp` directory:</p>
+<h2 id="init-hugo-dot-el">init-hugo.el</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span><span style="color:#75715e">;;; init-hugo.el --- Blogging helpers for Hugo/ox-hugo  -*- lexical-binding: t; -*-</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; Author: Gordon Owen Tillman &lt;got@example.com&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; Namespace: got/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; Summary: Create date-prefixed Hugo posts with optional tag prompting</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;; Commentary:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; This file provides a helper function to create a new blog post in</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; `got/blog-directory`, using the ox-hugo front-matter conventions.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; All functions are namespaced with `got/` (Gordon Owen Tillman).</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;; Code:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(require <span style="color:#e6db74">&#39;subr-x</span>)  <span style="color:#75715e">;; for string-join</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(defcustom got/blog-directory
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;~/Projects/g/gordyt.github.io/source/blog/&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Directory where blog posts are stored.&#34;</span>
+</span></span><span style="display:flex;"><span>  :type <span style="color:#e6db74">&#39;string</span>
+</span></span><span style="display:flex;"><span>  :group <span style="color:#e6db74">&#39;got</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(defun got--collect-existing-tags ()
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Collect all unique tags from existing blog posts.&#34;</span>
+</span></span><span style="display:flex;"><span>  (let ((tags <span style="color:#f92672">&#39;</span>()))
+</span></span><span style="display:flex;"><span>    (dolist (file (<span style="color:#a6e22e">directory-files</span> got/blog-directory <span style="color:#66d9ef">t</span> <span style="color:#e6db74">&#34;\.org$&#34;</span>))
+</span></span><span style="display:flex;"><span>      (with-temp-buffer
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">insert-file-contents</span> file)
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">goto-char</span> (<span style="color:#a6e22e">point-min</span>))
+</span></span><span style="display:flex;"><span>        (when (<span style="color:#a6e22e">re-search-forward</span> <span style="color:#e6db74">&#34;^#\\+HUGO_TAGS:\\s-*\\(.*\\)&#34;</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>          (let ((line-tags (split-string (match-string <span style="color:#ae81ff">1</span>) <span style="color:#e6db74">&#34;[ ,]+&#34;</span> <span style="color:#66d9ef">t</span>)))
+</span></span><span style="display:flex;"><span>            (setq tags (<span style="color:#a6e22e">append</span> tags line-tags))))))
+</span></span><span style="display:flex;"><span>    (delete-dups tags)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(defun got/new-blog-post (title)
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Create a new org-mode blog post in `got/blog-directory` with TITLE.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Prompts for existing tags (with the option to add new ones).&#34;</span>
+</span></span><span style="display:flex;"><span>  (interactive <span style="color:#e6db74">&#34;sPost Title: &#34;</span>)
+</span></span><span style="display:flex;"><span>  (let* ((date (<span style="color:#a6e22e">format-time-string</span> <span style="color:#e6db74">&#34;%Y-%m-%d&#34;</span>))
+</span></span><span style="display:flex;"><span>         (slug (replace-regexp-in-string
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;[^a-z0-9-]&#34;</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>                (replace-regexp-in-string
+</span></span><span style="display:flex;"><span>                 <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#e6db74">&#34;-&#34;</span> (<span style="color:#a6e22e">downcase</span> title))))
+</span></span><span style="display:flex;"><span>         (filename (<span style="color:#a6e22e">expand-file-name</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;%s-%s.org&#34;</span> date slug) got/blog-directory))
+</span></span><span style="display:flex;"><span>         (existing-tags (got--collect-existing-tags))
+</span></span><span style="display:flex;"><span>         (chosen-tags
+</span></span><span style="display:flex;"><span>          (completing-read-multiple
+</span></span><span style="display:flex;"><span>           <span style="color:#e6db74">&#34;Select tags (or type new ones, space-separated): &#34;</span>
+</span></span><span style="display:flex;"><span>           existing-tags <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">nil</span>)))
+</span></span><span style="display:flex;"><span>    (find-file filename)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;#+TITLE: %s\n&#34;</span> title))
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;#+DATE: %s\n&#34;</span> date))
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> <span style="color:#e6db74">&#34;#+HUGO_BASE_DIR: ../hugo-site/\n&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> <span style="color:#e6db74">&#34;#+HUGO_SECTION: posts\n&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;#+HUGO_TAGS: %s\n&#34;</span>
+</span></span><span style="display:flex;"><span>                    (string-join chosen-tags <span style="color:#e6db74">&#34; &#34;</span>)))
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">insert</span> <span style="color:#e6db74">&#34;#+HUGO_CATEGORIES: \n\n&#34;</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">message</span> <span style="color:#e6db74">&#34;New post created: %s&#34;</span> filename)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(provide <span style="color:#e6db74">&#39;init-hugo</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;;; init-hugo.el ends here</span>
+</span></span></code></pre></div><p>Then just a minor update in `init.el` to load it:</p>
+    </div>
+    <a href="/posts/2025-07-13-emacs-updates-to-support-new-hugo-powered-blog/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2014-11-26-liquid-exception-undefined-method-sort/" class="link black dim">
+        Liquid Exception: undefined method sort
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>I was getting this strange error when I tried to generate my site via
+the <code>rake generate</code> command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>## Generating Site with Jekyll
+</span></span><span style="display:flex;"><span>identical source/stylesheets/screen.css
+</span></span><span style="display:flex;"><span>Configuration file: /Users/gordy/Documents/Personal/gordyt.github.io/_config.yml
+</span></span><span style="display:flex;"><span>            Source: source
+</span></span><span style="display:flex;"><span>       Destination: public
+</span></span><span style="display:flex;"><span>      Generating...
+</span></span><span style="display:flex;"><span>  Liquid Exception: undefined method `sort!&#39; for nil:NilClass in _includes/post/categories.html, included in _layouts/post.html
+</span></span><span style="display:flex;"><span>jekyll 2.5.2 | Error:  undefined method `sort!&#39; for nil:NilClass
+</span></span></code></pre></div>
+    </div>
+    <a href="/posts/2014-11-26-liquid-exception-undefined-method-sort/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2014-11-26-second-post-this-time-with-org/" class="link black dim">
+        Second Post: This Time with Org
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <h2 id="testing-org-octopress">Testing Org-Octopress</h2>
+<p>This is a test post using <a href="https://github.com/yoshinari-nomura/org-octopress">org-octopress</a>&hellip;</p>
+    </div>
+    <a href="/posts/2014-11-26-second-post-this-time-with-org/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        
       
         <h2 class="f1">
           <a href="/tags/tags/" class="link blue hover-black">
@@ -489,88 +874,6 @@ like a <a href="https://www.google.com/chrome/devices/">Chromebook</a> or an <a 
         
       
         <h2 class="f1">
-          <a href="/tags/emacs/" class="link blue hover-black">
-            Tag: Emacs
-          </a>
-        </h2>
-        
-          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
-  <div class="mb3 pa4 gray overflow-hidden bg-white">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/2015-01-08-chromebook-performance-test---c720-vs-c200/" class="link black dim">
-        Chromebook Performance Test - C720 vs C200
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>My buddy at work just got a new Acer C720-3404 Chromebook.  I have the
-ASUS C200MA-EDU-4GB Chromebook.  We decided to do a real-world
-performance comparison with a sample task that we have to perform all
-of the time.</p>
-    </div>
-    <a href="/posts/2015-01-08-chromebook-performance-test---c720-vs-c200/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-</div>
-
-        
-          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
-  <div class="mb3 pa4 gray overflow-hidden bg-white">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/2015-01-04-org-octopress-notes/" class="link black dim">
-        Org-Octopress Notes
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>I&rsquo;ve been trying to sort-out the details of what is required to be
-able to maintain a GitHub pages site via Octopress / org-octopress
-from multiple computers. The slight complicating factor is that the
-location of the git repository for the site is different on the two
-computers that I am using.</p>
-    </div>
-    <a href="/posts/2015-01-04-org-octopress-notes/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-</div>
-
-        
-          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
-  <div class="mb3 pa4 gray overflow-hidden bg-white">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/2015-01-01-building-emacs-24.4-on-ubuntu-14.04/" class="link black dim">
-        Building Emacs 24.4 on Ubuntu 14.04
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>I recently signed up for a Virtual Private Server (VPS) with <a href="https://vpsdime.com">vpsdime</a>.
-The idea is to set-up a complete development environment for all of my
-work and personal projects that I can access from a low-end device
-like a <a href="https://www.google.com/chrome/devices/">Chromebook</a> or an <a href="https://www.apple.com/ipad/">iPad</a> (with a suitable SSH app installed).</p>
-    </div>
-    <a href="/posts/2015-01-01-building-emacs-24.4-on-ubuntu-14.04/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-</div>
-
-        
-          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
-  <div class="mb3 pa4 gray overflow-hidden bg-white">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/2014-11-26-second-post-this-time-with-org/" class="link black dim">
-        Second Post: This Time with Org
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="testing-org-octopress">Testing Org-Octopress</h2>
-<p>This is a test post using <a href="https://github.com/yoshinari-nomura/org-octopress">org-octopress</a>&hellip;</p>
-    </div>
-    <a href="/posts/2014-11-26-second-post-this-time-with-org/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-</div>
-
-        
-      
-        <h2 class="f1">
           <a href="/tags/github/" class="link blue hover-black">
             Tag: Github
           </a>
@@ -749,56 +1052,6 @@ tracking, study notes, etc.</li>
 <p>Regarding that last point, I would like to share my current setup.</p>
     </div>
     <a href="/posts/2014-11-26-bulletjournal-updates/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-</div>
-
-        
-      
-        <h2 class="f1">
-          <a href="/tags/org-mode/" class="link blue hover-black">
-            Tag: Org-Mode
-          </a>
-        </h2>
-        
-          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
-  <div class="mb3 pa4 gray overflow-hidden bg-white">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/2014-11-26-liquid-exception-undefined-method-sort/" class="link black dim">
-        Liquid Exception: undefined method sort
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>I was getting this strange error when I tried to generate my site via
-the <code>rake generate</code> command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>## Generating Site with Jekyll
-</span></span><span style="display:flex;"><span>identical source/stylesheets/screen.css
-</span></span><span style="display:flex;"><span>Configuration file: /Users/gordy/Documents/Personal/gordyt.github.io/_config.yml
-</span></span><span style="display:flex;"><span>            Source: source
-</span></span><span style="display:flex;"><span>       Destination: public
-</span></span><span style="display:flex;"><span>      Generating...
-</span></span><span style="display:flex;"><span>  Liquid Exception: undefined method `sort!&#39; for nil:NilClass in _includes/post/categories.html, included in _layouts/post.html
-</span></span><span style="display:flex;"><span>jekyll 2.5.2 | Error:  undefined method `sort!&#39; for nil:NilClass
-</span></span></code></pre></div>
-    </div>
-    <a href="/posts/2014-11-26-liquid-exception-undefined-method-sort/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-</div>
-
-        
-          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
-  <div class="mb3 pa4 gray overflow-hidden bg-white">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/2014-11-26-second-post-this-time-with-org/" class="link black dim">
-        Second Post: This Time with Org
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <h2 id="testing-org-octopress">Testing Org-Octopress</h2>
-<p>This is a test post using <a href="https://github.com/yoshinari-nomura/org-octopress">org-octopress</a>&hellip;</p>
-    </div>
-    <a href="/posts/2014-11-26-second-post-this-time-with-org/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 </div>
 

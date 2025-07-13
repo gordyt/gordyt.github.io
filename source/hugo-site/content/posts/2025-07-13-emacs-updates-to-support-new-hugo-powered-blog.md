@@ -1,0 +1,93 @@
++++
+title = "Emacs updates to support new hugo-powered blog"
+author = ["Gordon Tillman"]
+date = 2025-07-13
+tags = ["org-mode", "emacs", "hugo"]
+draft = false
++++
+
+This has been an interesting day.  After getting the updates to the
+blog repo all updated and working well, I wanted to also update my
+Emacs configuration to make it a smoother experience to add new posts.
+
+So two main changes were required. The majority is in this one file,
+located in my \`$HOME/.emacs.d/lisp\` directory:
+
+
+## init-hugo.el {#init-hugo-dot-el}
+
+```elisp
+;;; init-hugo.el --- Blogging helpers for Hugo/ox-hugo  -*- lexical-binding: t; -*-
+;; Author: Gordon Owen Tillman <got@example.com>
+;; Namespace: got/
+;; Summary: Create date-prefixed Hugo posts with optional tag prompting
+
+;;; Commentary:
+;; This file provides a helper function to create a new blog post in
+;; `got/blog-directory`, using the ox-hugo front-matter conventions.
+;; All functions are namespaced with `got/` (Gordon Owen Tillman).
+
+;;; Code:
+
+(require 'subr-x)  ;; for string-join
+
+(defcustom got/blog-directory
+  "~/Projects/g/gordyt.github.io/source/blog/"
+  "Directory where blog posts are stored."
+  :type 'string
+  :group 'got)
+
+(defun got--collect-existing-tags ()
+  "Collect all unique tags from existing blog posts."
+  (let ((tags '()))
+    (dolist (file (directory-files got/blog-directory t "\.org$"))
+      (with-temp-buffer
+        (insert-file-contents file)
+        (goto-char (point-min))
+        (when (re-search-forward "^#\\+HUGO_TAGS:\\s-*\\(.*\\)" nil t)
+          (let ((line-tags (split-string (match-string 1) "[ ,]+" t)))
+            (setq tags (append tags line-tags))))))
+    (delete-dups tags)))
+
+(defun got/new-blog-post (title)
+  "Create a new org-mode blog post in `got/blog-directory` with TITLE.
+Prompts for existing tags (with the option to add new ones)."
+  (interactive "sPost Title: ")
+  (let* ((date (format-time-string "%Y-%m-%d"))
+         (slug (replace-regexp-in-string
+                "[^a-z0-9-]" ""
+                (replace-regexp-in-string
+                 " " "-" (downcase title))))
+         (filename (expand-file-name (format "%s-%s.org" date slug) got/blog-directory))
+         (existing-tags (got--collect-existing-tags))
+         (chosen-tags
+          (completing-read-multiple
+           "Select tags (or type new ones, space-separated): "
+           existing-tags nil nil)))
+    (find-file filename)
+    (insert (format "#+TITLE: %s\n" title))
+    (insert (format "#+DATE: %s\n" date))
+    (insert "#+HUGO_BASE_DIR: ../hugo-site/\n")
+    (insert "#+HUGO_SECTION: posts\n")
+    (insert (format "#+HUGO_TAGS: %s\n"
+                    (string-join chosen-tags " ")))
+    (insert "#+HUGO_CATEGORIES: \n\n")
+    (message "New post created: %s" filename)))
+
+(provide 'init-hugo)
+
+;;; init-hugo.el ends here
+
+```
+
+Then just a minor update in \`init.el\` to load it:
+
+```elisp
+(require 'init-hugo)
+
+;; --- Hugo (if enabled) ---
+(use-package ox-hugo
+  :if (and (boundp 'got/enable-hugo) got/enable-hugo)
+  :after ox
+  :ensure t)
+```
