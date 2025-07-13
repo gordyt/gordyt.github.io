@@ -6,6 +6,17 @@ This branch contains the **source files** for [blog.gordontillman.info](https://
 - `source/blog/` — Org-mode blog posts
 - `source/hugo-site/` — Hugo site directory (with `config.toml`, theme, etc.)
 
+Note that after checking this branch for the first time, do this:
+
+```
+git submodule update --init --recursive
+git config submodule.recurse true
+```
+
+- First command: This will make sure that our theme submodule is loaded
+- Second command: When you checkout the `source` branch, will automatically check and reload if needed,
+
+
 ## 📝 Writing a new blog post
 
 Blog posts are written in **Org-mode** and exported to Hugo-compatible Markdown via [ox-hugo](https://ox-hugo.scripter.co/).
