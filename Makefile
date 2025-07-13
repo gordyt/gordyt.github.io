@@ -7,7 +7,9 @@ publish: clean
 	@echo "📦 Fetching build artifacts from $(SOURCE_BRANCH)…"
 	git archive $(SOURCE_BRANCH) --prefix=/ $(BUILD_DIR) | tar -x -C .
 	mv source/hugo-site/public/* .
-	git commit -a -m 'publish'
+	rm -rf source
+	git add -a
+	git commit -m 'publish'
 
 clean:
 	for f in $$(ls | grep -E -v 'Makefile|gitignore'); do rm -rf $$f; done
