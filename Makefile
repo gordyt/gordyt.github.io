@@ -12,4 +12,4 @@ publish: clean
 	git commit -m 'publish' || echo "📝 Nothing to commit."
 
 clean:
-	for f in $$(ls | grep -E -v 'Makefile|gitignore'); do rm -rf $$f; done
+	for f in $$(ls | grep -E -v 'Makefile|gitignore'); do git rm -rf $$f; done
