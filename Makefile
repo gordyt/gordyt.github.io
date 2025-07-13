@@ -8,7 +8,7 @@ publish: clean
 	git archive $(SOURCE_BRANCH) --prefix=/ $(BUILD_DIR) | tar -x -C .
 	mv source/hugo-site/public/* .
 	rm -rf source
-	git add -a
+	git add .
 	git commit -m 'publish'
 
 clean:
