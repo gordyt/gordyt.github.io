@@ -1,7 +1,7 @@
 SOURCE_BRANCH = source
 BUILD_DIR = source/hugo-site/public
 
-.PHONY: publish
+.PHONY: clean publish
 
 publish: clean
 	@echo "📦 Fetching build artifacts from $(SOURCE_BRANCH)…"
@@ -9,7 +9,7 @@ publish: clean
 	mv source/hugo-site/public/* .
 	rm -rf source
 	git add .
-	git commit -m 'publish'
+	git commit -m 'publish' || echo "📝 Nothing to commit."
 
 clean:
 	for f in $$(ls | grep -E -v 'Makefile|gitignore'); do rm -rf $$f; done
