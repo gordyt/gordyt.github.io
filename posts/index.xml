@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Gordy&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 20 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.gordontillman.info/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Test from dijkstra, my Framework laptop</title>
+      <link>https://blog.gordontillman.info/posts/2025-07-20-test-from-dijkstra-my-framework-laptop/</link>
+      <pubDate>Sun, 20 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.gordontillman.info/posts/2025-07-20-test-from-dijkstra-my-framework-laptop/</guid>
+      <description>&lt;p&gt;Decided to test out setting up and enabling this wiki setup on my&#xA;Fedora Linux laptop that I got from the good folks at &lt;a href=&#34;https://frame.work/&#34;&gt;Frame.Work&lt;/a&gt;. Have&#xA;had it for a while now.  I got the smaller laptop, the Framework&#xA;Laptop 13 (AMD Ryzen™ 7040 Series).&lt;/p&gt;&#xA;&lt;p&gt;It it light and handy.  Has a decent keyboard for a laptop. Running&#xA;the latest version of Fedora, as of the time of this post:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cat /etc/fedora-release&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Fedora release &lt;span style=&#34;color:#ae81ff&#34;&gt;42&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;Adams&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It&amp;rsquo;s a solid distro and is kept very up-to-date, which I like.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Emacs updates to support new hugo-powered blog</title>
       <link>https://blog.gordontillman.info/posts/2025-07-13-emacs-updates-to-support-new-hugo-powered-blog/</link>

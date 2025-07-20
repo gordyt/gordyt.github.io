@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "main.css",
-	"sourceRoot": "/Users/gordy/Projects/g/gordyt.github.io/source/hugo-site",
+	"sourceRoot": "/home/gordy/Projects/g/gordyt.github.io/source/hugo-site",
 	"sources": [
 		"ananke/css/main.css"
 	],
