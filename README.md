@@ -81,6 +81,15 @@ M-x org-hugo-export-to-md
 
 ✅ This generates the corresponding `.md` file in `source/hugo-site/content/posts/`.
 
+Then have hugo regenerate the site:
+
+```
+pushd source/hugo-site
+hugo
+popd
+git add .
+git commit -m '<commit message>'
+```
 ---
 
 ## 🚀 Publishing the site
