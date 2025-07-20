@@ -9,4 +9,4 @@ draft = false
 I've often referred to my cat, Lucky Bubba, as "natures most perfect
 cat", or "a prince amount cats".
 
-{{&lt; figure src="/images/cat/lucky-bubba-prince.jpg" title="Lucky Bubba - the little prince" alt="lucky bubba" &gt;}}
+[/images/cat/lucky-bubba-prince.jpg](/images/cat/lucky-bubba-prince.jpg)

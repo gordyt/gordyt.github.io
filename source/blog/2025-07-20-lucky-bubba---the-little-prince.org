@@ -8,5 +8,6 @@
 I've often referred to my cat, Lucky Bubba, as "natures most perfect
 cat", or "a prince amount cats".
 
+[[/images/cat/lucky-bubba-prince.jpg][/images/cat/lucky-bubba-prince.jpg]]
 
-{{< figure src="/images/cat/lucky-bubba-prince.jpg" title="Lucky Bubba - the little prince" alt="lucky bubba" >}}
+
