@@ -1,0 +1,12 @@
+#+TITLE: Lucky Bubba - the Little Prince
+#+DATE: 2025-07-20
+#+HUGO_BASE_DIR: ../hugo-site/
+#+HUGO_SECTION: posts
+#+HUGO_TAGS: cat
+#+HUGO_CATEGORIES:
+#+startup: inlineimages
+
+I've often referred to my cat, Lucky Bubba, as "natures most perfect
+cat", or "a prince amount cats".
+
+[[/images/cat/lucky-bubba-prince.png][Lucky Bubba Prince]]
