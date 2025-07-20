@@ -1,0 +1,21 @@
+#+TITLE: Test from dijkstra, my Framework laptop
+#+DATE: 2025-07-20
+#+HUGO_BASE_DIR: ../hugo-site/
+#+HUGO_SECTION: posts
+#+HUGO_TAGS: linux emacs
+#+HUGO_CATEGORIES: 
+
+Decided to test out setting up and enabling this wiki setup on my
+Fedora Linux laptop that I got from the good folks at [[https://frame.work/][Frame.Work]]. Have
+had it for a while now.  I got the smaller laptop, the Framework
+Laptop 13 (AMD Ryzen™ 7040 Series).
+
+It it light and handy.  Has a decent keyboard for a laptop. Running
+the latest version of Fedora, as of the time of this post:
+
+#+begin_src shell
+  cat /etc/fedora-release 
+  Fedora release 42 (Adams)
+#+end_src
+
+It's a solid distro and is kept very up-to-date, which I like.
