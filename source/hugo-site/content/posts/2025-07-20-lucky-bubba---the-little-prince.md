@@ -9,4 +9,4 @@ draft = false
 I've often referred to my cat, Lucky Bubba, as "natures most perfect
 cat", or "a prince amount cats".
 
-[/images/cat/lucky-bubba-prince.jpg](/images/cat/lucky-bubba-prince.jpg)
+[Lucky Bubba](/images/cat/lucky-bubba-prince.jpg)
