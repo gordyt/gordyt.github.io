@@ -6,13 +6,20 @@
     <description>Recent content in Tags on Gordy&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 20 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.gordontillman.info/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Emacs</title>
       <link>https://blog.gordontillman.info/tags/emacs/</link>
-      <pubDate>Sun, 13 Jul 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 20 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://blog.gordontillman.info/tags/emacs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://blog.gordontillman.info/tags/linux/</link>
+      <pubDate>Sun, 20 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.gordontillman.info/tags/linux/</guid>
       <description></description>
     </item>
     <item>
@@ -69,13 +76,6 @@
       <link>https://blog.gordontillman.info/tags/github/</link>
       <pubDate>Sun, 04 Jan 2015 00:00:00 +0000</pubDate>
       <guid>https://blog.gordontillman.info/tags/github/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Linux</title>
-      <link>https://blog.gordontillman.info/tags/linux/</link>
-      <pubDate>Sun, 04 Jan 2015 00:00:00 +0000</pubDate>
-      <guid>https://blog.gordontillman.info/tags/linux/</guid>
       <description></description>
     </item>
     <item>
