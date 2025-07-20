@@ -74,6 +74,15 @@ This keeps posts sorted chronologically and easy to navigate.
 
 3️⃣ Write your content below the header.
 
+Images:
+
+- Put your image somewhere inside of `source/hugo-site/static/images`.  The `images` directory will be mounted at the top level of the wiki, so image references should like this this: `/images/<path-to-image>`
+- Use standard org-mode syntax
+- If you want just a link to the image:
+  - EX: ` [[/images/<path-to-image>][<image-description]]`
+- if you want to load the image inline:
+  - EX: `[[/images/<path-to-image>]]`
+
 4️⃣ Export to Markdown with:
 ```
 M-x org-hugo-export-to-md
